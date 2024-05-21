@@ -3,13 +3,15 @@
 import { Fragment, useState } from "react";
 import { Dialog, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import programingSVG from "../../profilegithub/programming.svg";
+import Image from "next/image";
 
 export default function MainPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <>
-      <header className="bg-white bg-white dark:bg-gray-900">
+      <header className="bg-white dark:bg-gray-900">
         <nav
           className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
           aria-label="Global"
@@ -137,37 +139,79 @@ export default function MainPage() {
           </Dialog.Panel>
         </Dialog>
       </header>
-      <main className="bg-white bg-white dark:bg-gray-900">
-        <section id="aboutme">
-          <div>
+
+      <main className="bg-white dark:bg-gray-900">
+        <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+          <h1 className="mb-4 text-4xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+            Olá! Eu sou Lucas Oliveira
+          </h1>
+          <p className="font-light sm:text-lg gap-16 items-center py-8 px-4 text-gray-900 dark:text-gray-300">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum
+            porro excepturi inventore dignissimos consequuntur eligendi sapiente
+            minima? Unde sit accusantium qui, suscipit quae exercitationem,
+            illum autem adipisci blanditiis beatae nemo! Lorem ipsum dolor, sit
+            amet consectetur adipisicing elit. Aspernatur cum possimus officiis
+            illo obcaecati ipsa consectetur libero eveniet quasi sequi! Esse
+            omnis totam nostrum dolores adipisci sapiente possimus vel cumque!
+          </p>
+          <hr className="my-12 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+          <section id="aboutme">
+            <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400 gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+              <div>
+                {
+                  //Apresentação
+                }
+                <h2 className="text-2xl font-extrabold dark:text-white">
+                  Quem Sou?
+                </h2>
+                <p className="text-gray-900 dark:text-gray-300">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+                  aliquam molestiae aliquid harum, ad dolore dolores unde
+                  nostrum ducimus est incidunt, optio debitis corrupti! Sint
+                  libero voluptate rem saepe eius! Lorem ipsum dolor sit amet,
+                  consectetur adipisicing elit. Voluptatibus consectetur
+                  temporibus voluptatum recusandae eaque sit autem repellendus
+                  perferendis, at eveniet, laborum nulla, laudantium eum et
+                  molestias delectus quasi nam expedita! Lorem ipsum, dolor sit
+                  amet consectetur adipisicing elit. Voluptatem temporibus
+                  delectus dolor quasi odio corporis tempora quaerat omnis
+                  repellat, accusantium eligendi saepe veritatis perspiciatis
+                  consequuntur accusamus obcaecati placeat a ab.
+                </p>
+              </div>
+              <div className="grid-cols-2 gap-4 mt-8 flex justify-center">
+                {
+                  //Imagem
+                }
+
+                <Image
+                  alt="Code Decoretion"
+                  width={300}
+                  height={300}
+                  src={programingSVG}
+                />
+              </div>
+            </div>
+          </section>
+          <section>
+            <div>
+              {
+                //SoftSkills
+              }
+            </div>
+            <div>
+              {
+                //HardSkills
+              }
+            </div>
+          </section>
+          <section id="projetos">
             {
-              //Apresentação
+              //Projetos
             }
-          </div>
-          <div>
-            {
-              //Imagem
-            }
-          </div>
-        </section>
-        <section>
-          <div>
-            {
-              //SoftSkills
-            }
-          </div>
-          <div>
-            {
-              //HardSkills
-            }
-          </div>
-        </section>
-        <section id="projetos">
-          {
-            //Projetos
-          }
-        </section>
-        <section id="contato"></section>
+          </section>
+          <section id="contato"></section>
+        </div>
       </main>
 
       <footer className="bg-white dark:bg-gray-900">
@@ -182,6 +226,7 @@ export default function MainPage() {
             </span>
             <div className="flex mt-4 sm:justify-center sm:mt-0">
               <a
+                target="_blank"
                 href="https://leetcode.com/u/lucasdevtec/"
                 className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
               >
@@ -197,6 +242,7 @@ export default function MainPage() {
                 <span className="sr-only">LeetCode</span>
               </a>
               <a
+                target="_blank"
                 href="https://linkedin.com/in/lucasdevtec"
                 className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5 "
               >
@@ -213,6 +259,7 @@ export default function MainPage() {
               </a>
               <a
                 href="https://github.com/lucasdevtec"
+                target="_blank"
                 className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
               >
                 <svg
@@ -231,6 +278,7 @@ export default function MainPage() {
                 <span className="sr-only">GitHub account</span>
               </a>
               <a
+                target="_blank"
                 href="https://wa.me/+5584999797930"
                 className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
               >
@@ -246,6 +294,7 @@ export default function MainPage() {
                 <span className="sr-only">WhatsApp account</span>
               </a>{" "}
               <a
+                target="_blank"
                 href="mailto:lucasprogjr@gmail.com"
                 className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
               >
