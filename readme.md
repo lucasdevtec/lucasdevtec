@@ -69,6 +69,10 @@
 
 <div align="center">
 
+[![Lucas Oliveria's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=lucasdevtec&show_icons=true&theme=dark#gh-dark-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-dark-mode-only)
+
+[![Lucas Oliveira's GitHub stats-Light](https://github-readme-stats.vercel.app/api?username=lucasdevtec&show_icons=true&theme=default#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-light-mode-only)
+
 [![GitHub Streak](https://streak-stats.demolab.com?user=lucasdevtec&theme=dark)]()
 
 [![Lucas Oliveria's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=lucasdevtec&show_icons=true&theme=dark#gh-dark-mode-only)](https://lucastech.dev.br)
