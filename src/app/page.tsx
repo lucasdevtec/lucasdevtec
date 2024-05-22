@@ -63,7 +63,7 @@ export default function MainPage() {
               Quem sou?
             </a>
             <a
-              href="#"
+              href="#skills"
               className="text-sm font-semibold leading-6 text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
               Skills
@@ -120,7 +120,7 @@ export default function MainPage() {
                     Quem sou?
                   </a>
                   <a
-                    href="#"
+                    href="#skills"
                     onClick={() => setMobileMenuOpen(false)}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-500 hover:text-gray-900 hover:bg-gray-50 dark:text-[#ffffff]"
                   >
@@ -154,7 +154,7 @@ export default function MainPage() {
             illo obcaecati ipsa consectetur libero eveniet quasi sequi! Esse
             omnis totam nostrum dolores adipisci sapiente possimus vel cumque!
           </p>
-          <hr className="my-12 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+          <hr className="h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
           <section id="aboutme">
             <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400 gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
               <div>
@@ -179,7 +179,7 @@ export default function MainPage() {
                   consequuntur accusamus obcaecati placeat a ab.
                 </p>
               </div>
-              <div className="grid-cols-2 gap-4 mt-8 flex justify-center">
+              <div className="flex justify-center">
                 {
                   //Imagem
                 }
@@ -193,16 +193,19 @@ export default function MainPage() {
               </div>
             </div>
           </section>
-          <section>
-            <div>
-              {
-                //SoftSkills
-              }
-            </div>
-            <div>
-              {
-                //HardSkills
-              }
+          <hr className="h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+          <section id="skills">
+            <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400 gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+              <div>
+                {
+                  //SoftSkills
+                }
+              </div>
+              <div>
+                {
+                  //HardSkills
+                }
+              </div>
             </div>
           </section>
           <section id="projetos">
