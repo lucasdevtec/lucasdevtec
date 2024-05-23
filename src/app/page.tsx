@@ -145,49 +145,71 @@ export default function MainPage() {
           <h1 className="mb-4 text-4xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
             Olá! Eu sou Lucas Oliveira
           </h1>
-          <p className="font-light sm:text-lg gap-16 items-center py-8 px-4 text-gray-900 dark:text-gray-300">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum
-            porro excepturi inventore dignissimos consequuntur eligendi sapiente
-            minima? Unde sit accusantium qui, suscipit quae exercitationem,
-            illum autem adipisci blanditiis beatae nemo! Lorem ipsum dolor, sit
-            amet consectetur adipisicing elit. Aspernatur cum possimus officiis
-            illo obcaecati ipsa consectetur libero eveniet quasi sequi! Esse
-            omnis totam nostrum dolores adipisci sapiente possimus vel cumque!
+          <p className="font-light sm:text-lg items-center text-center pb-8 px-4 text-gray-900 dark:text-gray-300">
+            Desenvolvedor Web Full Stack
           </p>
           <hr className="h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
           <section id="aboutme">
             <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400 gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
               <div>
-                {
-                  //Apresentação
-                }
-                <h2 className="text-2xl font-extrabold dark:text-white">
+                <h2 className="text-2xl font-extrabold dark:text-white pb-5">
                   Quem Sou?
                 </h2>
-                <p className="text-gray-900 dark:text-gray-300">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-                  aliquam molestiae aliquid harum, ad dolore dolores unde
-                  nostrum ducimus est incidunt, optio debitis corrupti! Sint
-                  libero voluptate rem saepe eius! Lorem ipsum dolor sit amet,
-                  consectetur adipisicing elit. Voluptatibus consectetur
-                  temporibus voluptatum recusandae eaque sit autem repellendus
-                  perferendis, at eveniet, laborum nulla, laudantium eum et
-                  molestias delectus quasi nam expedita! Lorem ipsum, dolor sit
-                  amet consectetur adipisicing elit. Voluptatem temporibus
-                  delectus dolor quasi odio corporis tempora quaerat omnis
-                  repellat, accusantium eligendi saepe veritatis perspiciatis
-                  consequuntur accusamus obcaecati placeat a ab.
+                <p className="text-gray-900 dark:text-gray-300 pb-5">
+                  Sou um graduando em Análise e Desenvolvimento de Sistemas pela
+                  universidade Uninassau, com a previsão de conclusão em 2025.
+                  Meu objetivo profissional é atuar na área de Web, construindo
+                  ferramentas e sistemas que ajude a todos, afim de adquirir
+                  experiência e me aprimorar ainda mais na área.
                 </p>
+                <a
+                  target="blank"
+                  href="https://drive.google.com/file/d/1weze-oUBKQNNkQwfq9WAbLDRQCf3gkSs/view?usp=drive_link"
+                  className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+                >
+                  <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 h-full flex justify-between items-between gap-2">
+                    <span>My Curriculo</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="size-5"
+                    >
+                      <path d="M10.75 2.75a.75.75 0 0 0-1.5 0v8.614L6.295 8.235a.75.75 0 1 0-1.09 1.03l4.25 4.5a.75.75 0 0 0 1.09 0l4.25-4.5a.75.75 0 0 0-1.09-1.03l-2.955 3.129V2.75Z" />
+                      <path d="M3.5 12.75a.75.75 0 0 0-1.5 0v2.5A2.75 2.75 0 0 0 4.75 18h10.5A2.75 2.75 0 0 0 18 15.25v-2.5a.75.75 0 0 0-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5Z" />
+                    </svg>
+                  </span>
+                </a>{" "}
+                <a
+                  target="blank"
+                  href="https://github.com/lucasdevtec"
+                  className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+                >
+                  <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 h-full flex justify-between items-between gap-2">
+                    <span>GitHub</span>
+                    <svg
+                      className="w-4 h-4 me-2"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </span>
+                </a>
               </div>
               <div className="flex justify-center">
-                {
-                  //Imagem
-                }
-
                 <Image
+                  className="pt-10 lg:pt-0"
                   alt="Code Decoretion"
                   width={300}
                   height={300}
+                  priority={true}
                   src={programingSVG}
                 />
               </div>
