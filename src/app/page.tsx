@@ -69,7 +69,7 @@ export default function MainPage() {
               Skills
             </a>
             <a
-              href="#"
+              href="#projetos"
               className="text-sm font-semibold leading-6 text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
               Projetos
@@ -127,7 +127,7 @@ export default function MainPage() {
                     Skills
                   </a>
                   <a
-                    href="#"
+                    href="#projetos"
                     onClick={() => setMobileMenuOpen(false)}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-500 hover:text-gray-900 hover:bg-gray-50 dark:text-[#ffffff]"
                   >
@@ -216,6 +216,9 @@ export default function MainPage() {
             </div>
           </section>
           <hr className="h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+          <h2 className="text-gray-900 text-4xl mt-8 dark:text-white text-center">
+            Coming soon ...
+          </h2>
           <section id="skills">
             <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400 gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
               <div>
