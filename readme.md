@@ -69,7 +69,9 @@
 
 <div align="center">
 
-[![GitHub Streak](https://streak-stats.demolab.com?user=lucasdevtec&theme=dark)]()
+[![GitHub Streak - dark](https://streak-stats.demolab.com?user=lucasdevtec&theme=dark#gh-dark-mode-only)](https://github.com/lucasdevtec/github-readme-stats#gh-dark-mode-only)
+
+[![GitHub Streak - light](https://streak-stats.demolab.com?user=lucasdevtec#gh-light-mode-only)](https://github.com/lucasdevtec/github-readme-stats#gh-light-mode-only)
 
 [![Lucas Oliveria's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=lucasdevtec&show_icons=true&theme=dark#gh-dark-mode-only)](https://github.com/lucasdevtec/github-readme-stats#gh-dark-mode-only)
 
@@ -105,3 +107,9 @@
 </div>
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
+## 🏆 Achievements
+
+[![achievements-light](https://github-profile-trophy.vercel.app/?username=lucasdevtec#gh-light-mode-only)](https://github.com/lucasdevtec/github-readme-stats#gh-light-mode-only)
+
+[![achievements-dark](https://github-profile-trophy.vercel.app/?username=lucasdevtec&theme=radical#gh-dark-mode-only)](https://github.com/lucasdevtec/github-readme-stats#gh-dark-mode-only)
