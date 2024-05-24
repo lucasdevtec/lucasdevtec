@@ -155,14 +155,14 @@ export default function MainPage() {
                 <h2 className="text-2xl font-extrabold dark:text-white pb-5">
                   Quem Sou?
                 </h2>
-                <p className="text-gray-900 dark:text-gray-300 pb-5">
+                <p className="text-gray-900 dark:text-gray-300">
                   Sou graduando em Análise e Desenvolvimento de Sistemas na
                   Uninassau, previsão de conclusão em 2025.
-                  <p>
-                    Meu objetivo é trabalhar com desenvolvimento web, criando
-                    ferramentas e sistemas que ajudem os usuários. Quero ganhar
-                    experiência e sempre melhorar minhas habilidades na área.
-                  </p>
+                </p>
+                <p className="text-gray-900 dark:text-gray-300 pb-5">
+                  Meu objetivo é trabalhar com desenvolvimento web, criando
+                  ferramentas e sistemas que ajudem os usuários. Quero ganhar
+                  experiência e sempre melhorar minhas habilidades na área.
                 </p>
                 <a
                   target="blank"
