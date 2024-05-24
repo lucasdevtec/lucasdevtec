@@ -156,11 +156,13 @@ export default function MainPage() {
                   Quem Sou?
                 </h2>
                 <p className="text-gray-900 dark:text-gray-300 pb-5">
-                  Sou um graduando em Análise e Desenvolvimento de Sistemas pela
-                  universidade Uninassau, com a previsão de conclusão em 2025.
-                  Meu objetivo profissional é atuar na área de Web, construindo
-                  ferramentas e sistemas que ajude a todos, afim de adquirir
-                  experiência e me aprimorar ainda mais na área.
+                  Sou graduando em Análise e Desenvolvimento de Sistemas na
+                  Uninassau, previsão de conclusão em 2025.
+                  <p>
+                    Meu objetivo é trabalhar com desenvolvimento web, criando
+                    ferramentas e sistemas que ajudem os usuários. Quero ganhar
+                    experiência e sempre melhorar minhas habilidades na área.
+                  </p>
                 </p>
                 <a
                   target="blank"
@@ -168,7 +170,7 @@ export default function MainPage() {
                   className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
                 >
                   <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 h-full flex justify-between items-between gap-2">
-                    <span>My Curriculo</span>
+                    <span>Meu Currículo</span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
