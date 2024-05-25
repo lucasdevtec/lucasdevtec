@@ -5,6 +5,7 @@ import { Dialog, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import programingSVG from "../../profilegithub/programming.svg";
 import Image from "next/image";
+import CardProjects from "@/components/CardProjects";
 
 export default function MainPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -235,10 +236,12 @@ export default function MainPage() {
               </div>
             </div>
           </section>
+          <hr className="h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
           <section id="projetos">
             {
               //Projetos
             }
+            <CardProjects />
           </section>
           <section id="contato"></section>
         </div>
