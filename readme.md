@@ -13,7 +13,7 @@
 
 <br>
 
-- Hello, and welcome to my GitHub profile! My name is Abdul Khalid, and I am a self-taught front-end developer with a passion for creating engaging and user-friendly web applications.
+- Hello, and welcome to my GitHub profile! My name is Lucas Oliveira, and I am a self-taught front-end developer with a passion for creating engaging and user-friendly web applications.
 
 - Currently, I am pursuing a Bachelor's degree in Computer Science, where I am also learning and expanding my knowledge in software development.
 
