@@ -156,17 +156,19 @@ export default function MainPage() {
                   Quem Sou?
                 </h2>
                 <p className="text-gray-900 dark:text-gray-300">
-                  Sou graduando em Análise e Desenvolvimento de Sistemas na
-                  Uninassau, previsão de conclusão em 2025.
+                  Sou graduado em Análise e Desenvolvimento de Sistemas e
+                  estudante de Ciência da Computação, com experiência em
+                  Back-End e DevOps.
                 </p>
                 <p className="text-gray-900 dark:text-gray-300 pb-5">
-                  Meu objetivo é trabalhar com desenvolvimento web, criando
-                  ferramentas e sistemas que ajudem os usuários. Quero ganhar
-                  experiência e sempre melhorar minhas habilidades na área.
+                  Domino as mais populares tecnologias de desenvolvimento web no
+                  mercado e estou sempre em busca de oportunidade para aplicar
+                  meus conhecimentos e evoluir na área de desenvolvimento de
+                  software.
                 </p>
                 <a
                   target="blank"
-                  href="https://drive.google.com/file/d/1weze-oUBKQNNkQwfq9WAbLDRQCf3gkSs/view?usp=drive_link"
+                  href="https://drive.google.com/file/d/17wmC1iItTjBBOndBT4VQrws4cZWNFQx-/view?usp=sharing"
                   className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
                 >
                   <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 h-full flex justify-between items-between gap-2">
