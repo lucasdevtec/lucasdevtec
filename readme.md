@@ -69,18 +69,17 @@
 
 <div align="center">
 
-[![GitHub Streak - dark](https://streak-stats.demolab.com?user=lucasdevtec&theme=dark#gh-dark-mode-only)](https://github.com/lucasdevtec/github-readme-stats#gh-dark-mode-only)
+[![GitHub Streak - dark](https://streak-stats.demolab.com?user=lucasdevtec&theme=darcula&hide_longest_streak=true)](https://github.com/lucasdevtec)
 
-[![GitHub Streak - light](https://streak-stats.demolab.com?user=lucasdevtec#gh-light-mode-only)](https://github.com/lucasdevtec/github-readme-stats#gh-light-mode-only)
+<!--
+[//]:[![Lucas Oliveria's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=lucasdevtec&show_icons=true&theme=dark#gh-dark-mode-only)](https://github.com/lucasdevtec)
 
-[![Lucas Oliveria's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=lucasdevtec&show_icons=true&theme=dark#gh-dark-mode-only)](https://github.com/lucasdevtec/github-readme-stats#gh-dark-mode-only)
+[//]:[![Lucas Oliveira's GitHub stats-Light](https://github-readme-stats.vercel.app/api?username=lucasdevtec&show_icons=true&theme=default#gh-light-mode-only)](https://github.com/lucasdevtec)
 
-[![Lucas Oliveira's GitHub stats-Light](https://github-readme-stats.vercel.app/api?username=lucasdevtec&show_icons=true&theme=default#gh-light-mode-only)](https://github.com/lucasdevtec/github-readme-stats#gh-light-mode-only)
+[//]:[![Top Langs-Light](https://github-readme-stats.vercel.app/api/top-langs?username=lucasdevtec&layout=compact&langs_count=8&card_width=320#gh-light-mode-only)](https://github.com/lucasdevtec)
 
-[![Top Langs-Light](https://github-readme-stats.vercel.app/api/top-langs?username=lucasdevtec&layout=compact&langs_count=8&card_width=320#gh-light-mode-only)](https://github.com/lucasdevtec/github-readme-stats#gh-light-mode-only)
-
-[![Top Langs-Dark](https://github-readme-stats.vercel.app/api/top-langs?username=lucasdevtec&layout=compact&theme=dark&langs_count=8&card_width=320#gh-dark-mode-only)](https://github.com/lucasdevtec/github-readme-stats#gh-dark-mode-only)
-
+[//]:[![Top Langs-Dark](https://github-readme-stats.vercel.app/api/top-langs?username=lucasdevtec&layout=compact&theme=dark&langs_count=8&card_width=320#gh-dark-mode-only)](https://github.com/lucasdevtec)
+-->
 </div>
 
 ---
@@ -110,6 +109,6 @@
 
 ## 🏆 Achievements
 
-[![achievements-light](https://github-profile-trophy.vercel.app/?username=lucasdevtec#gh-light-mode-only)](https://github.com/lucasdevtec/github-readme-stats#gh-light-mode-only)
+[![achievements-light](https://github-profile-trophy-fork-two.vercel.app/?username=lucasdevtec#gh-light-mode-only)](https://github.com/lucasdevtec/github-readme-stats#gh-light-mode-only)
 
-[![achievements-dark](https://github-profile-trophy.vercel.app/?username=lucasdevtec&theme=radical#gh-dark-mode-only)](https://github.com/lucasdevtec/github-readme-stats#gh-dark-mode-only)
+[![achievements-dark](https://github-profile-trophy-fork-two.vercel.app/?username=lucasdevtec&theme=radical#gh-dark-mode-only)](https://github.com/lucasdevtec/github-readme-stats#gh-dark-mode-only)
