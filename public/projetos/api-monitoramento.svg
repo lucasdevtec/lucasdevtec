@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">API de Monitoramento</title>
+  <desc id="desc">Imagem de capa do projeto de API de monitoramento.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#052e16" />
+      <stop offset="100%" stop-color="#14532d" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect x="130" y="130" width="940" height="415" rx="24" fill="#022c22" opacity="0.8"/>
+  <polyline points="180,420 300,360 420,390 560,300 720,340 860,250 1020,290" fill="none" stroke="#34d399" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="180" y="190" width="360" height="42" rx="10" fill="#14532d"/>
+  <rect x="180" y="250" width="800" height="30" rx="8" fill="#166534"/>
+  <rect x="180" y="300" width="720" height="30" rx="8" fill="#166534"/>
+  <text x="180" y="490" fill="#d1fae5" font-size="34" font-family="Arial, sans-serif">API de Monitoramento</text>
+</svg>

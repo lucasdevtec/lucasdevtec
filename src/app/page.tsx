@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment, useState, type FormEvent } from "react";
 import { Dialog, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import programingSVG from "../../profilegithub/programming.svg";
@@ -8,6 +8,161 @@ import Image from "next/image";
 
 export default function MainPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [filtroTecnologia, setFiltroTecnologia] = useState("Todas");
+  const [contatoStatus, setContatoStatus] = useState("");
+  const softSkills = [
+    "Comunicação clara",
+    "Trabalho em equipe",
+    "Pensamento analítico",
+    "Resolução de problemas",
+    "Gestão de tempo",
+    "Aprendizado contínuo",
+  ];
+
+  const hardSkills = [
+    { nome: "JavaScript / TypeScript", nivel: 95 },
+    { nome: "Node.js e APIs REST", nivel: 91 },
+    { nome: "React e Next.js", nivel: 90 },
+    { nome: "SQL e modelagem de dados", nivel: 85 },
+    { nome: "Docker e CI/CD", nivel: 80 },
+    { nome: "Git e GitHub", nivel: 92 },
+  ];
+
+  const projetos = [
+    {
+      titulo: "StudyCycle - Plataforma de Gestão de Estudos",
+      descricao:
+        "Aplicação full stack para gestão de estudos com funcionalidades de acompanhamento de progresso, organização de horários e integração com APIs externas.",
+      tecnologias: ["Next.js", "TypeScript", "Sequelize"],
+      imagem: "/projetos/gestao-tarefas.svg",
+      status: "Em produção",
+      repositorio: "https://github.com/lucasdevtec/study-cycle",
+      demo: "https://studycycle.lucastech.dev.br/",
+    },
+    {
+      titulo: "RPGManager - Sistema de Gestão de Personagens",
+      descricao:
+        "Aplicação mobile para gestão de personagens de RPG com funcionalidades de criação, edição e acompanhamento de progresso.",
+      tecnologias: ["React Native", "JavaScript", "Expo", "Zustand"],
+      imagem: "/projetos/api-monitoramento.svg",
+      status: "Em produção",
+      repositorio: "https://github.com/lucasdevtec/rpgmanager",
+      demo: "https://rpgmanager.lucastech.dev.br/",
+    },
+    {
+      titulo: "SSTHelp - Sistema de Gestão de Segurança do Trabalho",
+      descricao:
+        "Sistema para gestão de SST com funcionalidades de monitoramento, relatórios, indicadores, controle de conformidade e gerenciamento de riscos e treinamentos, incidentes e conformidade legal, documentos e ativos de combate a incêndio.",
+      tecnologias: [
+        "Next.js",
+        "Prisma",
+        "JWT",
+        "Material-UI",
+        "TypeScript",
+        "Domain-Driven Design",
+        "PostgreSQL",
+      ],
+      imagem: "/projetos/painel-indicadores.svg",
+      status: "Em desenvolvimento",
+      repositorio: "https://github.com/lucasdevtec/ssthelp",
+      demo: "https://ssthelp.lucastech.dev.br/",
+    },
+    // {
+    //   titulo: "E-commerce de Eletrônicos",
+    //   descricao:
+    //     "Loja virtual com catálogo dinâmico, carrinho persistente e checkout integrado com gateway de pagamentos.",
+    //   tecnologias: ["Next.js", "Stripe", "PostgreSQL", "Tailwind"],
+    //   imagem: "/projetos/gestao-tarefas.svg",
+    //   status: "Em produção",
+    //   repositorio: "https://github.com/lucasdevtec",
+    //   demo: "https://lucastech.dev.br/",
+    // },
+    // {
+    //   titulo: "Sistema de Chamados TI",
+    //   descricao:
+    //     "Plataforma para abertura e gestão de chamados com filas por prioridade, SLA e histórico de atendimento.",
+    //   tecnologias: ["React", "Node.js", "MongoDB", "Socket.IO"],
+    //   imagem: "/projetos/api-monitoramento.svg",
+    //   status: "Em evolução",
+    //   repositorio: "https://github.com/lucasdevtec",
+    //   demo: "https://lucastech.dev.br/",
+    // },
+    // {
+    //   titulo: "Portal de Conteúdo Técnico",
+    //   descricao:
+    //     "Portal com artigos versionados, busca avançada e painel administrativo para gestão editorial.",
+    //   tecnologias: ["Next.js", "MDX", "TypeScript", "Vercel"],
+    //   imagem: "/projetos/painel-indicadores.svg",
+    //   status: "Case de estudo",
+    //   repositorio: "https://github.com/lucasdevtec",
+    //   demo: "https://lucastech.dev.br/",
+    // },
+    // {
+    //   titulo: "Controle Financeiro Pessoal",
+    //   descricao:
+    //     "Aplicativo para controle de receitas e despesas com metas mensais e gráficos de evolução financeira.",
+    //   tecnologias: ["Vue", "Firebase", "Chart.js", "Pinia"],
+    //   imagem: "/projetos/gestao-tarefas.svg",
+    //   status: "Em produção",
+    //   repositorio: "https://github.com/lucasdevtec",
+    //   demo: "https://lucastech.dev.br/",
+    // },
+    // {
+    //   titulo: "Gerenciador de Ambientes DevOps",
+    //   descricao:
+    //     "Painel para provisionamento de ambientes com pipelines CI/CD, observabilidade e controle de deploy.",
+    //   tecnologias: ["NestJS", "Docker", "GitHub Actions", "Prometheus"],
+    //   imagem: "/projetos/api-monitoramento.svg",
+    //   status: "Em evolução",
+    //   repositorio: "https://github.com/lucasdevtec",
+    //   demo: "https://lucastech.dev.br/",
+    // },
+    // {
+    //   titulo: "Plataforma de Cursos Online",
+    //   descricao:
+    //     "Ambiente EAD com trilhas de aprendizado, player de aulas e área de progresso por aluno.",
+    //   tecnologias: ["React", "Node.js", "MySQL", "AWS S3"],
+    //   imagem: "/projetos/painel-indicadores.svg",
+    //   status: "Case de estudo",
+    //   repositorio: "https://github.com/lucasdevtec",
+    //   demo: "https://lucastech.dev.br/",
+    // },
+  ];
+  const tecnologiasDisponiveis = [
+    "Todas",
+    ...new Set(projetos.flatMap((projeto) => projeto.tecnologias)),
+  ];
+  const projetosFiltrados =
+    filtroTecnologia === "Todas"
+      ? projetos
+      : projetos.filter((projeto) =>
+          projeto.tecnologias.includes(filtroTecnologia),
+        );
+
+  const handleContatoSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const nome = String(formData.get("nome") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const mensagem = String(formData.get("mensagem") ?? "").trim();
+
+    if (!nome || !email || !mensagem) {
+      setContatoStatus("Preencha todos os campos antes de enviar.");
+      return;
+    }
+
+    const assunto = encodeURIComponent(`Contato via portfolio - ${nome}`);
+    const corpo = encodeURIComponent(
+      `Nome: ${nome}\nE-mail: ${email}\n\nMensagem:\n${mensagem}`,
+    );
+
+    window.location.href = `mailto:lucasprogjr@gmail.com?subject=${assunto}&body=${corpo}`;
+    setContatoStatus(
+      "Mensagem pronta no seu cliente de e-mail. Obrigado pelo contato!",
+    );
+    event.currentTarget.reset();
+  };
 
   return (
     <>
@@ -74,6 +229,12 @@ export default function MainPage() {
             >
               Projetos
             </a>
+            <a
+              href="#contato"
+              className="text-sm font-semibold leading-6 text-gray-500 hover:text-gray-900 dark:hover:text-white"
+            >
+              Contato
+            </a>
           </Popover.Group>
         </nav>
         <Dialog
@@ -132,6 +293,13 @@ export default function MainPage() {
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-500 hover:text-gray-900 hover:bg-gray-50 dark:text-[#ffffff]"
                   >
                     Projetos
+                  </a>
+                  <a
+                    href="#contato"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-500 hover:text-gray-900 hover:bg-gray-50 dark:text-[#ffffff]"
+                  >
+                    Contato
                   </a>
                 </div>
               </div>
@@ -220,29 +388,281 @@ export default function MainPage() {
             </div>
           </section>
           <hr className="h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
-          <h2 className="text-gray-900 text-4xl mt-8 dark:text-white text-center">
-            Coming soon ...
-          </h2>
           <section id="skills">
-            <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400 gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
-              <div>
-                {
-                  //SoftSkills
-                }
+            <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+              <div className="max-w-screen-md mb-8 lg:mb-12">
+                <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white">
+                  Skills
+                </h2>
+                <p className="mt-3 text-gray-600 dark:text-gray-300">
+                  Competências técnicas e comportamentais aplicadas no
+                  desenvolvimento de software.
+                </p>
               </div>
-              <div>
-                {
-                  //HardSkills
-                }
+
+              <div className="grid gap-6 lg:grid-cols-2">
+                <article className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                    Soft Skills
+                  </h3>
+                  <ul className="mt-4 space-y-3">
+                    {softSkills.map((skill) => (
+                      <li
+                        key={skill}
+                        className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-200"
+                      >
+                        <span className="h-2 w-2 rounded-full bg-blue-500" />
+                        <span>{skill}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+
+                <article className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                    Hard Skills
+                  </h3>
+                  <div className="mt-4 space-y-4">
+                    {hardSkills.map((skill) => (
+                      <div key={skill.nome}>
+                        <div className="mb-1 flex items-center justify-between text-sm">
+                          <span className="font-semibold text-gray-800 dark:text-gray-200">
+                            {skill.nome}
+                          </span>
+                          <span className="text-gray-500 dark:text-gray-400">
+                            {skill.nivel}%
+                          </span>
+                        </div>
+                        <div className="h-2 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+                          <div
+                            className="h-2 rounded-full bg-blue-500"
+                            style={{ width: `${skill.nivel}%` }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </article>
               </div>
             </div>
           </section>
+          <hr className="h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
           <section id="projetos">
-            {
-              //Projetos
-            }
+            <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+              <div className="max-w-screen-md mb-8 lg:mb-12">
+                <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white">
+                  Projetos em destaque
+                </h2>
+                <p className="mt-3 text-gray-600 dark:text-gray-300">
+                  Alguns projetos que representam minha experiência em
+                  desenvolvimento full stack e arquitetura de software.
+                </p>
+              </div>
+
+              <div className="mb-6 flex flex-wrap gap-2">
+                {tecnologiasDisponiveis.map((tech) => {
+                  const ativo = filtroTecnologia === tech;
+
+                  return (
+                    <button
+                      key={tech}
+                      type="button"
+                      onClick={() => setFiltroTecnologia(tech)}
+                      className={`rounded-full border px-3 py-1 text-sm font-semibold transition-colors ${
+                        ativo
+                          ? "border-blue-600 bg-blue-600 text-white"
+                          : "border-gray-300 text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700"
+                      }`}
+                    >
+                      {tech}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                {projetosFiltrados.map((projeto) => (
+                  <article
+                    key={projeto.titulo}
+                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800"
+                  >
+                    <div className="relative h-44 w-full bg-gradient-to-br from-slate-200 to-slate-300 dark:from-gray-700 dark:to-gray-800">
+                      {projeto.imagem ? (
+                        <Image
+                          src={projeto.imagem}
+                          alt={`Capa do projeto ${projeto.titulo}`}
+                          fill
+                          className="object-cover"
+                        />
+                      ) : null}
+                      <span className="absolute right-3 top-3 rounded-full bg-black/70 px-3 py-1 text-xs font-semibold text-white">
+                        {projeto.status}
+                      </span>
+                    </div>
+
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                        {projeto.titulo}
+                      </h3>
+
+                      <p className="mt-3 flex-1 text-sm text-gray-600 dark:text-gray-300">
+                        {projeto.descricao}
+                      </p>
+
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {projeto.tecnologias.map((tecnologia) => (
+                          <span
+                            key={tecnologia}
+                            className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-semibold text-gray-700 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200"
+                          >
+                            {tecnologia}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="mt-6 flex gap-3">
+                        <a
+                          href={projeto.repositorio}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center justify-center rounded-lg bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-black dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"
+                        >
+                          Repositório
+                        </a>
+                        <a
+                          href={projeto.demo}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-800 transition-colors hover:bg-gray-100 dark:border-gray-500 dark:text-white dark:hover:bg-gray-700"
+                        >
+                          Demo
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
           </section>
-          <section id="contato"></section>
+          <hr className="h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+          <section id="contato">
+            <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+              <div className="max-w-screen-md mb-8 lg:mb-12">
+                <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white">
+                  Contato
+                </h2>
+                <p className="mt-3 text-gray-600 dark:text-gray-300">
+                  Vamos conversar sobre projeto, oportunidade ou parceria.
+                </p>
+              </div>
+
+              <div className="grid gap-6 lg:grid-cols-5">
+                <div className="lg:col-span-2 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                    Canais rápidos
+                  </h3>
+                  <div className="mt-4 space-y-3">
+                    <a
+                      href="mailto:lucasprogjr@gmail.com"
+                      className="block rounded-lg border border-gray-200 px-4 py-3 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-100 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700"
+                    >
+                      E-mail: lucasprogjr@gmail.com
+                    </a>
+                    <a
+                      href="https://wa.me/5584999797930"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block rounded-lg border border-gray-200 px-4 py-3 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-100 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700"
+                    >
+                      WhatsApp
+                    </a>
+                    <a
+                      href="https://linkedin.com/in/lucasdevtec"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block rounded-lg border border-gray-200 px-4 py-3 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-100 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700"
+                    >
+                      LinkedIn
+                    </a>
+                  </div>
+                </div>
+
+                <form
+                  onSubmit={handleContatoSubmit}
+                  className="lg:col-span-3 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+                >
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                    Enviar mensagem
+                  </h3>
+
+                  <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                    <div className="sm:col-span-1">
+                      <label
+                        htmlFor="nome"
+                        className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-200"
+                      >
+                        Nome
+                      </label>
+                      <input
+                        id="nome"
+                        name="nome"
+                        type="text"
+                        required
+                        className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 outline-none transition-colors focus:border-blue-500 dark:border-gray-600 dark:bg-gray-900 dark:text-white"
+                        placeholder="Seu nome"
+                      />
+                    </div>
+                    <div className="sm:col-span-1">
+                      <label
+                        htmlFor="email"
+                        className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-200"
+                      >
+                        E-mail
+                      </label>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 outline-none transition-colors focus:border-blue-500 dark:border-gray-600 dark:bg-gray-900 dark:text-white"
+                        placeholder="voce@email.com"
+                      />
+                    </div>
+                    <div className="sm:col-span-2">
+                      <label
+                        htmlFor="mensagem"
+                        className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-200"
+                      >
+                        Mensagem
+                      </label>
+                      <textarea
+                        id="mensagem"
+                        name="mensagem"
+                        required
+                        rows={5}
+                        className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 outline-none transition-colors focus:border-blue-500 dark:border-gray-600 dark:bg-gray-900 dark:text-white"
+                        placeholder="Escreva sua mensagem"
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="mt-4 inline-flex items-center justify-center rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+                  >
+                    Enviar por e-mail
+                  </button>
+
+                  {contatoStatus ? (
+                    <p className="mt-3 text-sm text-gray-600 dark:text-gray-300">
+                      {contatoStatus}
+                    </p>
+                  ) : null}
+                </form>
+              </div>
+            </div>
+          </section>
+          <hr className="h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
         </div>
       </main>
 
