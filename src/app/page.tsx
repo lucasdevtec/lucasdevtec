@@ -33,11 +33,11 @@ export default function MainPage() {
       titulo: "StudyCycle - Plataforma de Gestão de Estudos",
       descricao:
         "Aplicação full stack para gestão de estudos com funcionalidades de acompanhamento de progresso, organização de horários e integração com APIs externas.",
-      tecnologias: ["Next.js", "TypeScript", "Sequelize"],
-      imagem: "/projetos/gestao-tarefas.svg",
+      tecnologias: ["Next.js", "TypeScript", "PostgreSQL"],
+      imagem: "/projetos/StudyCycle.png",
       status: "Em produção",
       repositorio: "https://github.com/lucasdevtec/study-cycle",
-      demo: "https://studycycle.lucastech.dev.br/",
+      demo: "https://studycycle.ltech.dev.br/",
     },
     {
       titulo: "RPGManager - Sistema de Gestão de Personagens",
@@ -45,9 +45,9 @@ export default function MainPage() {
         "Aplicação mobile para gestão de personagens de RPG com funcionalidades de criação, edição e acompanhamento de progresso.",
       tecnologias: ["React Native", "JavaScript", "Expo", "Zustand"],
       imagem: "/projetos/api-monitoramento.svg",
-      status: "Em produção",
+      status: "Em desenvolvimento",
       repositorio: "https://github.com/lucasdevtec/rpgmanager",
-      demo: "https://rpgmanager.lucastech.dev.br/",
+      demo: "https://rpgmanager.ltech.dev.br/",
     },
     {
       titulo: "SSTHelp - Sistema de Gestão de Segurança do Trabalho",
@@ -65,7 +65,7 @@ export default function MainPage() {
       imagem: "/projetos/painel-indicadores.svg",
       status: "Em desenvolvimento",
       repositorio: "https://github.com/lucasdevtec/ssthelp",
-      demo: "https://ssthelp.lucastech.dev.br/",
+      demo: "https://ssthelp.ltech.dev.br/",
     },
     // {
     //   titulo: "E-commerce de Eletrônicos",
