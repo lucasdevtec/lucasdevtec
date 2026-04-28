@@ -157,7 +157,7 @@ export default function MainPage() {
       `Nome: ${nome}\nE-mail: ${email}\n\nMensagem:\n${mensagem}`,
     );
 
-    window.location.href = `mailto:lucasprogjr@gmail.com?subject=${assunto}&body=${corpo}`;
+    window.location.href = `mailto:lucasg113377@gmail.com?subject=${assunto}&body=${corpo}`;
     setContatoStatus(
       "Mensagem pronta no seu cliente de e-mail. Obrigado pelo contato!",
     );
@@ -563,10 +563,10 @@ export default function MainPage() {
                   </h3>
                   <div className="mt-4 space-y-3">
                     <a
-                      href="mailto:lucasprogjr@gmail.com"
+                      href="mailto:lucasg113377@gmail.com"
                       className="block rounded-lg border border-gray-200 px-4 py-3 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-100 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700"
                     >
-                      E-mail: lucasprogjr@gmail.com
+                      E-mail: lucasg113377@gmail.com
                     </a>
                     <a
                       href="https://wa.me/5584999797930"
@@ -747,7 +747,7 @@ export default function MainPage() {
               </a>{" "}
               <a
                 target="_blank"
-                href="mailto:lucasprogjr@gmail.com"
+                href="mailto:lucasg113377@gmail.com"
                 className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
               >
                 <svg
