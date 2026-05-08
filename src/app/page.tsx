@@ -1,143 +1,177 @@
 "use client";
 
-import { Fragment, useState, type FormEvent } from "react";
-import { Dialog, Popover, Transition } from "@headlessui/react";
+import { useState, type FormEvent } from "react";
+import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import programingSVG from "../../profilegithub/programming.svg";
 import Image from "next/image";
+import programingSVG from "../../profilegithub/programming.svg";
+
+type Projeto = {
+  titulo: string;
+  descricao: string;
+  tecnologias: string[];
+  imagem: string;
+  status: string;
+  repositorio: string;
+  demo: string;
+};
+
+const softSkills = [
+  "Comunicação clara",
+  "Trabalho em equipe",
+  "Pensamento analítico",
+  "Resolução de problemas",
+  "Gestão de tempo",
+  "Aprendizado contínuo",
+];
+
+const hardSkills = [
+  { nome: "JavaScript / TypeScript", nivel: 95 },
+  { nome: "Node.js e APIs REST", nivel: 91 },
+  { nome: "React e Next.js", nivel: 90 },
+  { nome: "SQL e modelagem de dados", nivel: 85 },
+  { nome: "Docker e CI/CD", nivel: 80 },
+  { nome: "Git e GitHub", nivel: 92 },
+];
+
+const projetos: Projeto[] = [
+  {
+    titulo: "StudyCycle - Plataforma de Gestão de Estudos",
+    descricao:
+      "Aplicação full stack para gestão de estudos com trilhas, progresso e organização de rotina de forma prática.",
+    tecnologias: ["Next.js", "TypeScript", "PostgreSQL"],
+    imagem: "/projetos/StudyCycle.png",
+    status: "Em produção",
+    repositorio: "https://github.com/lucasdevtec/study-cycle",
+    demo: "https://studycycle.ltech.dev.br/",
+  },
+  {
+    titulo: "RPGManager - Sistema de Gestão de Personagens",
+    descricao:
+      "Aplicação mobile para criação e gestão de personagens com foco em velocidade de uso durante sessões de RPG.",
+    tecnologias: ["React Native", "JavaScript", "Expo", "Zustand"],
+    imagem: "/projetos/api-monitoramento.svg",
+    status: "Em desenvolvimento",
+    repositorio: "https://github.com/lucasdevtec/rpgmanager",
+    demo: "https://rpgmanager.ltech.dev.br/",
+  },
+  {
+    titulo: "SSTHelp - Sistema de Gestão de Segurança do Trabalho",
+    descricao:
+      "Plataforma de SST com monitoramento de indicadores, riscos, conformidade legal e documentação operacional.",
+    tecnologias: [
+      "Next.js",
+      "Prisma",
+      "JWT",
+      "Material-UI",
+      "TypeScript",
+      "Domain-Driven Design",
+      "PostgreSQL",
+    ],
+    imagem: "/projetos/painel-indicadores.svg",
+    status: "Em desenvolvimento",
+    repositorio: "https://github.com/lucasdevtec/ssthelp",
+    demo: "https://ssthelp.ltech.dev.br/",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://ltech.dev.br/#person",
+      name: "Lucas Oliveira",
+      alternateName: "Lucas DevTec",
+      url: "https://ltech.dev.br",
+      image: "https://ltech.dev.br/opengraph-image",
+      jobTitle: "Desenvolvedor Full Stack",
+      sameAs: [
+        "https://github.com/lucasdevtec",
+        "https://linkedin.com/in/lucasdevtec",
+        "https://leetcode.com/u/lucasdevtec/",
+      ],
+      alumniOf: [
+        "Análise e Desenvolvimento de Sistemas",
+        "Ciência da Computação",
+      ],
+      knowsAbout: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "Prisma",
+        "Arquitetura de Software",
+        "DevOps",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ltech.dev.br/#website",
+      url: "https://ltech.dev.br",
+      name: "Lucas Oliveira Portfolio",
+      description:
+        "Portfólio de Lucas Oliveira com projetos, stack e experiência em desenvolvimento full stack.",
+      inLanguage: "pt-BR",
+      publisher: {
+        "@id": "https://ltech.dev.br/#person",
+      },
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://ltech.dev.br/#portfolio",
+      url: "https://ltech.dev.br",
+      name: "Portfólio de Projetos de Lucas Oliveira",
+      isPartOf: {
+        "@id": "https://ltech.dev.br/#website",
+      },
+      about: {
+        "@id": "https://ltech.dev.br/#person",
+      },
+    },
+    {
+      "@type": "ItemList",
+      name: "Projetos em destaque",
+      itemListElement: projetos.map((projeto, index) => ({
+        "@type": "SoftwareSourceCode",
+        position: index + 1,
+        name: projeto.titulo,
+        description: projeto.descricao,
+        codeRepository: projeto.repositorio,
+        url: projeto.demo,
+        programmingLanguage: projeto.tecnologias.join(", "),
+      })),
+    },
+  ],
+};
+
+const secoesNavegacao = [
+  { href: "#projetos", label: "Projetos" },
+  { href: "#sobre", label: "Sobre" },
+  { href: "#skills", label: "Skills" },
+  { href: "#contato", label: "Contato" },
+];
 
 export default function MainPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [filtroTecnologia, setFiltroTecnologia] = useState("Todas");
   const [contatoStatus, setContatoStatus] = useState("");
-  const softSkills = [
-    "Comunicação clara",
-    "Trabalho em equipe",
-    "Pensamento analítico",
-    "Resolução de problemas",
-    "Gestão de tempo",
-    "Aprendizado contínuo",
-  ];
 
-  const hardSkills = [
-    { nome: "JavaScript / TypeScript", nivel: 95 },
-    { nome: "Node.js e APIs REST", nivel: 91 },
-    { nome: "React e Next.js", nivel: 90 },
-    { nome: "SQL e modelagem de dados", nivel: 85 },
-    { nome: "Docker e CI/CD", nivel: 80 },
-    { nome: "Git e GitHub", nivel: 92 },
-  ];
-
-  const projetos = [
-    {
-      titulo: "StudyCycle - Plataforma de Gestão de Estudos",
-      descricao:
-        "Aplicação full stack para gestão de estudos com funcionalidades de acompanhamento de progresso, organização de horários e integração com APIs externas.",
-      tecnologias: ["Next.js", "TypeScript", "PostgreSQL"],
-      imagem: "/projetos/StudyCycle.png",
-      status: "Em produção",
-      repositorio: "https://github.com/lucasdevtec/study-cycle",
-      demo: "https://studycycle.ltech.dev.br/",
-    },
-    {
-      titulo: "RPGManager - Sistema de Gestão de Personagens",
-      descricao:
-        "Aplicação mobile para gestão de personagens de RPG com funcionalidades de criação, edição e acompanhamento de progresso.",
-      tecnologias: ["React Native", "JavaScript", "Expo", "Zustand"],
-      imagem: "/projetos/api-monitoramento.svg",
-      status: "Em desenvolvimento",
-      repositorio: "https://github.com/lucasdevtec/rpgmanager",
-      demo: "https://rpgmanager.ltech.dev.br/",
-    },
-    {
-      titulo: "SSTHelp - Sistema de Gestão de Segurança do Trabalho",
-      descricao:
-        "Sistema para gestão de SST com funcionalidades de monitoramento, relatórios, indicadores, controle de conformidade e gerenciamento de riscos e treinamentos, incidentes e conformidade legal, documentos e ativos de combate a incêndio.",
-      tecnologias: [
-        "Next.js",
-        "Prisma",
-        "JWT",
-        "Material-UI",
-        "TypeScript",
-        "Domain-Driven Design",
-        "PostgreSQL",
-      ],
-      imagem: "/projetos/painel-indicadores.svg",
-      status: "Em desenvolvimento",
-      repositorio: "https://github.com/lucasdevtec/ssthelp",
-      demo: "https://ssthelp.ltech.dev.br/",
-    },
-    // {
-    //   titulo: "E-commerce de Eletrônicos",
-    //   descricao:
-    //     "Loja virtual com catálogo dinâmico, carrinho persistente e checkout integrado com gateway de pagamentos.",
-    //   tecnologias: ["Next.js", "Stripe", "PostgreSQL", "Tailwind"],
-    //   imagem: "/projetos/gestao-tarefas.svg",
-    //   status: "Em produção",
-    //   repositorio: "https://github.com/lucasdevtec",
-    //   demo: "https://lucastech.dev.br/",
-    // },
-    // {
-    //   titulo: "Sistema de Chamados TI",
-    //   descricao:
-    //     "Plataforma para abertura e gestão de chamados com filas por prioridade, SLA e histórico de atendimento.",
-    //   tecnologias: ["React", "Node.js", "MongoDB", "Socket.IO"],
-    //   imagem: "/projetos/api-monitoramento.svg",
-    //   status: "Em evolução",
-    //   repositorio: "https://github.com/lucasdevtec",
-    //   demo: "https://lucastech.dev.br/",
-    // },
-    // {
-    //   titulo: "Portal de Conteúdo Técnico",
-    //   descricao:
-    //     "Portal com artigos versionados, busca avançada e painel administrativo para gestão editorial.",
-    //   tecnologias: ["Next.js", "MDX", "TypeScript", "Vercel"],
-    //   imagem: "/projetos/painel-indicadores.svg",
-    //   status: "Case de estudo",
-    //   repositorio: "https://github.com/lucasdevtec",
-    //   demo: "https://lucastech.dev.br/",
-    // },
-    // {
-    //   titulo: "Controle Financeiro Pessoal",
-    //   descricao:
-    //     "Aplicativo para controle de receitas e despesas com metas mensais e gráficos de evolução financeira.",
-    //   tecnologias: ["Vue", "Firebase", "Chart.js", "Pinia"],
-    //   imagem: "/projetos/gestao-tarefas.svg",
-    //   status: "Em produção",
-    //   repositorio: "https://github.com/lucasdevtec",
-    //   demo: "https://lucastech.dev.br/",
-    // },
-    // {
-    //   titulo: "Gerenciador de Ambientes DevOps",
-    //   descricao:
-    //     "Painel para provisionamento de ambientes com pipelines CI/CD, observabilidade e controle de deploy.",
-    //   tecnologias: ["NestJS", "Docker", "GitHub Actions", "Prometheus"],
-    //   imagem: "/projetos/api-monitoramento.svg",
-    //   status: "Em evolução",
-    //   repositorio: "https://github.com/lucasdevtec",
-    //   demo: "https://lucastech.dev.br/",
-    // },
-    // {
-    //   titulo: "Plataforma de Cursos Online",
-    //   descricao:
-    //     "Ambiente EAD com trilhas de aprendizado, player de aulas e área de progresso por aluno.",
-    //   tecnologias: ["React", "Node.js", "MySQL", "AWS S3"],
-    //   imagem: "/projetos/painel-indicadores.svg",
-    //   status: "Case de estudo",
-    //   repositorio: "https://github.com/lucasdevtec",
-    //   demo: "https://lucastech.dev.br/",
-    // },
-  ];
   const tecnologiasDisponiveis = [
     "Todas",
     ...new Set(projetos.flatMap((projeto) => projeto.tecnologias)),
   ];
+
   const projetosFiltrados =
     filtroTecnologia === "Todas"
       ? projetos
       : projetos.filter((projeto) =>
           projeto.tecnologias.includes(filtroTecnologia),
         );
+
+  const projetoPrincipal = projetosFiltrados[0];
+  const projetosSecundarios = projetosFiltrados.slice(1);
 
   const handleContatoSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -152,7 +186,7 @@ export default function MainPage() {
       return;
     }
 
-    const assunto = encodeURIComponent(`Contato via portfolio - ${nome}`);
+    const assunto = encodeURIComponent(`Contato via portfólio - ${nome}`);
     const corpo = encodeURIComponent(
       `Nome: ${nome}\nE-mail: ${email}\n\nMensagem:\n${mensagem}`,
     );
@@ -165,607 +199,559 @@ export default function MainPage() {
   };
 
   return (
-    <>
-      <header className="bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-[#0c111d] text-slate-100">
+      <header className="sticky top-0 z-40 border-b border-white/10 bg-[#0c111d]/80 backdrop-blur-md">
         <nav
-          className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+          className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6"
           aria-label="Global"
         >
-          <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Dev</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                className="w-8 h-8 dark:text-[#ffffff]"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Zm4.78 1.97a.75.75 0 0 1 0 1.06L5.81 8l.97.97a.75.75 0 1 1-1.06 1.06l-1.5-1.5a.75.75 0 0 1 0-1.06l1.5-1.5a.75.75 0 0 1 1.06 0Zm2.44 1.06a.75.75 0 0 1 1.06-1.06l1.5 1.5a.75.75 0 0 1 0 1.06l-1.5 1.5a.75.75 0 1 1-1.06-1.06l.97-.97-.97-.97Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </a>
-          </div>
-          <div className="flex lg:hidden">
-            <button
-              type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5  dark:text-[#ffffff] text-gray-700"
-              onClick={() => setMobileMenuOpen(true)}
-            >
-              <span className="sr-only">Open main menu</span>
-              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-            </button>
-          </div>
-          <Popover.Group className="hidden lg:flex lg:gap-x-12">
-            <Popover className="relative">
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-200"
-                enterFrom="opacity-0 translate-y-1"
-                enterTo="opacity-100 translate-y-0"
-                leave="transition ease-in duration-150"
-                leaveFrom="opacity-100 translate-y-0"
-                leaveTo="opacity-0 translate-y-1"
-              ></Transition>
-            </Popover>
+          <a href="/" className="inline-flex items-center gap-3">
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-cyan-300 to-amber-300 text-sm font-black text-slate-900">
+              LO
+            </span>
+            <span className="text-sm font-semibold tracking-[0.2em] text-slate-200">
+              LUCAS OLIVEIRA
+            </span>
+          </a>
 
-            <a
-              href="#aboutme"
-              className="text-sm font-semibold leading-6 text-gray-500 hover:text-gray-900 dark:hover:text-white"
-            >
-              Quem sou?
-            </a>
-            <a
-              href="#skills"
-              className="text-sm font-semibold leading-6 text-gray-500 hover:text-gray-900 dark:hover:text-white"
-            >
-              Skills
-            </a>
-            <a
-              href="#projetos"
-              className="text-sm font-semibold leading-6 text-gray-500 hover:text-gray-900 dark:hover:text-white"
-            >
-              Projetos
-            </a>
-            <a
-              href="#contato"
-              className="text-sm font-semibold leading-6 text-gray-500 hover:text-gray-900 dark:hover:text-white"
-            >
-              Contato
-            </a>
-          </Popover.Group>
-        </nav>
-        <Dialog
-          className="lg:hidden"
-          open={mobileMenuOpen}
-          onClose={setMobileMenuOpen}
-        >
-          <div className="fixed inset-0 z-10" />
-          <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white dark:bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Dev</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                  className="w-8 h-8  dark:text-[#ffffff]"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Zm4.78 1.97a.75.75 0 0 1 0 1.06L5.81 8l.97.97a.75.75 0 1 1-1.06 1.06l-1.5-1.5a.75.75 0 0 1 0-1.06l1.5-1.5a.75.75 0 0 1 1.06 0Zm2.44 1.06a.75.75 0 0 1 1.06-1.06l1.5 1.5a.75.75 0 0 1 0 1.06l-1.5 1.5a.75.75 0 1 1-1.06-1.06l.97-.97-.97-.97Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </a>
-              <button
-                type="button"
-                className="-m-2.5 rounded-md p-2.5 text-gray-700  dark:text-[#ffffff]"
-                onClick={() => setMobileMenuOpen(false)}
+          <div className="hidden items-center gap-8 lg:flex">
+            {secoesNavegacao.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-sm font-semibold text-slate-300 transition-colors hover:text-white"
               >
-                <span className="sr-only">Close menu</span>
-                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-              </button>
-            </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6">
-                <div className="space-y-2 py-6">
-                  <a
-                    href="#aboutme"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-500 hover:text-gray-900 
-                    dark:text-[#ffffff] hover:bg-gray-50  dark:hover:bg-text-gray-900"
-                  >
-                    Quem sou?
-                  </a>
-                  <a
-                    href="#skills"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-500 hover:text-gray-900 hover:bg-gray-50 dark:text-[#ffffff]"
-                  >
-                    Skills
-                  </a>
-                  <a
-                    href="#projetos"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-500 hover:text-gray-900 hover:bg-gray-50 dark:text-[#ffffff]"
-                  >
-                    Projetos
-                  </a>
-                  <a
-                    href="#contato"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-500 hover:text-gray-900 hover:bg-gray-50 dark:text-[#ffffff]"
-                  >
-                    Contato
-                  </a>
-                </div>
-              </div>
-            </div>
-          </Dialog.Panel>
-        </Dialog>
+                {item.label}
+              </a>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            className="rounded-md p-2 text-slate-100 lg:hidden"
+            onClick={() => setMobileMenuOpen(true)}
+          >
+            <span className="sr-only">Abrir menu</span>
+            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+          </button>
+        </nav>
       </header>
 
-      <main className="bg-white dark:bg-gray-900">
-        <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-          <h1 className="mb-4 text-4xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-            Olá! Eu sou Lucas Oliveira
-          </h1>
-          <p className="font-light sm:text-lg items-center text-center pb-8 px-4 text-gray-900 dark:text-gray-300">
-            Desenvolvedor Web Full Stack
-          </p>
-          <hr className="h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
-          <section id="aboutme">
-            <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400 gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
-              <div>
-                <h2 className="text-2xl font-extrabold dark:text-white pb-5">
-                  Quem Sou?
-                </h2>
-                <p className="text-gray-900 dark:text-gray-300">
-                  Sou graduado em Análise e Desenvolvimento de Sistemas e
-                  estudante de Ciência da Computação, com experiência em
-                  Back-End e DevOps.
-                </p>
-                <p className="text-gray-900 dark:text-gray-300 pb-5">
-                  Domino as mais populares tecnologias de desenvolvimento web no
-                  mercado e estou sempre em busca de oportunidade para aplicar
-                  meus conhecimentos e evoluir na área de desenvolvimento de
-                  software.
-                </p>
+      <Dialog
+        className="lg:hidden"
+        open={mobileMenuOpen}
+        onClose={setMobileMenuOpen}
+      >
+        <div className="fixed inset-0 z-50 bg-slate-900/60" />
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full max-w-xs border-l border-white/10 bg-[#0c111d] p-6">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-semibold tracking-[0.2em] text-slate-200">
+              MENU
+            </span>
+            <button
+              type="button"
+              className="rounded-md p-2 text-slate-100"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span className="sr-only">Fechar menu</span>
+              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
+
+          <div className="mt-8 space-y-3">
+            {secoesNavegacao.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="block rounded-lg border border-white/10 px-4 py-3 text-sm font-semibold text-slate-200"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </Dialog.Panel>
+      </Dialog>
+
+      <main>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+        <section className="relative overflow-hidden">
+          <div className="pointer-events-none absolute inset-0 -z-10">
+            <div className="absolute -left-24 top-12 h-80 w-80 rounded-full bg-cyan-400/15 blur-3xl" />
+            <div className="absolute -right-20 top-28 h-72 w-72 rounded-full bg-amber-400/20 blur-3xl" />
+            <div className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-emerald-400/10 blur-3xl" />
+          </div>
+
+          <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 pb-20 pt-12 sm:px-6 lg:grid-cols-2 lg:items-center lg:pb-24 lg:pt-16">
+            <div>
+              <p className="mb-4 inline-flex rounded-full border border-cyan-200/40 bg-cyan-300/10 px-4 py-1 text-xs font-bold uppercase tracking-[0.2em] text-cyan-100">
+                Dev Full Stack
+              </p>
+              <h1 className="text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
+                Eu construo produtos
+                <span className="block bg-gradient-to-r from-cyan-200 via-sky-100 to-amber-200 bg-clip-text text-transparent">
+                  que resolvem problemas reais
+                </span>
+              </h1>
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-300 sm:text-lg">
+                Sou Lucas Oliveira, desenvolvedor web full stack com foco em
+                aplicações escaláveis, experiência de usuário consistente e
+                arquitetura limpa.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-3">
                 <a
-                  target="blank"
-                  href="https://drive.google.com/file/d/17wmC1iItTjBBOndBT4VQrws4cZWNFQx-/view?usp=sharing"
-                  className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+                  href="#projetos"
+                  className="inline-flex items-center justify-center rounded-lg bg-cyan-300 px-6 py-3 text-sm font-black uppercase tracking-wide text-slate-900 transition-transform hover:-translate-y-0.5"
                 >
-                  <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 h-full flex justify-between items-between gap-2">
-                    <span>Meu Currículo</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      className="size-5"
-                    >
-                      <path d="M10.75 2.75a.75.75 0 0 0-1.5 0v8.614L6.295 8.235a.75.75 0 1 0-1.09 1.03l4.25 4.5a.75.75 0 0 0 1.09 0l4.25-4.5a.75.75 0 0 0-1.09-1.03l-2.955 3.129V2.75Z" />
-                      <path d="M3.5 12.75a.75.75 0 0 0-1.5 0v2.5A2.75 2.75 0 0 0 4.75 18h10.5A2.75 2.75 0 0 0 18 15.25v-2.5a.75.75 0 0 0-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5Z" />
-                    </svg>
-                  </span>
-                </a>{" "}
+                  Ver projetos
+                </a>
                 <a
-                  target="blank"
                   href="https://github.com/lucasdevtec"
-                  className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-lg border border-white/20 px-6 py-3 text-sm font-bold uppercase tracking-wide text-slate-100 transition-colors hover:bg-white/10"
                 >
-                  <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 h-full flex justify-between items-between gap-2">
-                    <span>GitHub</span>
-                    <svg
-                      className="w-4 h-4 me-2"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </span>
+                  GitHub
                 </a>
               </div>
-              <div className="flex justify-center">
+
+              <div className="mt-10 grid max-w-xl grid-cols-3 gap-3">
+                <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                  <p className="text-2xl font-black text-white">+3</p>
+                  <p className="text-xs uppercase tracking-wider text-slate-300">
+                    Projetos ativos
+                  </p>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                  <p className="text-2xl font-black text-white">90%+</p>
+                  <p className="text-xs uppercase tracking-wider text-slate-300">
+                    Stack moderna
+                  </p>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                  <p className="text-2xl font-black text-white">100%</p>
+                  <p className="text-xs uppercase tracking-wider text-slate-300">
+                    Foco em entrega
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative mx-auto w-full max-w-xl">
+              <Image
+                alt="Ilustracao de programacao"
+                width={460}
+                height={460}
+                priority
+                className="mx-auto h-auto w-full max-w-sm"
+                src={programingSVG}
+              />
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="projetos"
+          className="mx-auto w-full max-w-7xl px-4 pb-24 sm:px-6"
+        >
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-200">
+                Projeto acima de tudo
+              </p>
+              <h2 className="mt-2 text-3xl font-black text-white sm:text-4xl">
+                Cases em destaque
+              </h2>
+              <p className="mt-3 max-w-2xl text-slate-300">
+                Uma seleção de produtos que mostram arquitetura, integração de
+                dados e foco na experiência de quem usa.
+              </p>
+            </div>
+          </div>
+
+          <div className="mb-8 flex flex-wrap gap-2">
+            {tecnologiasDisponiveis.map((tech) => {
+              const ativo = filtroTecnologia === tech;
+
+              return (
+                <button
+                  key={tech}
+                  type="button"
+                  onClick={() => setFiltroTecnologia(tech)}
+                  className={`rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wide transition-colors ${
+                    ativo
+                      ? "border-cyan-300 bg-cyan-300 text-slate-900"
+                      : "border-white/20 bg-white/5 text-slate-200 hover:bg-white/10"
+                  }`}
+                >
+                  {tech}
+                </button>
+              );
+            })}
+          </div>
+
+          {projetoPrincipal ? (
+            <article className="mb-8 grid overflow-hidden rounded-3xl border border-white/15 bg-[#11182a] lg:grid-cols-2">
+              <div className="relative min-h-72">
                 <Image
-                  className="pt-10 lg:pt-0"
-                  alt="Code Decoretion"
-                  width={300}
-                  height={300}
-                  priority={true}
-                  src={programingSVG}
+                  src={projetoPrincipal.imagem}
+                  alt={`Capa do projeto ${projetoPrincipal.titulo}`}
+                  fill
+                  className="object-cover"
                 />
               </div>
-            </div>
-          </section>
-          <hr className="h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
-          <section id="skills">
-            <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-              <div className="max-w-screen-md mb-8 lg:mb-12">
-                <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white">
-                  Skills
-                </h2>
-                <p className="mt-3 text-gray-600 dark:text-gray-300">
-                  Competências técnicas e comportamentais aplicadas no
-                  desenvolvimento de software.
+
+              <div className="p-6 sm:p-8 lg:p-10">
+                <span className="inline-flex rounded-full bg-amber-300 px-3 py-1 text-xs font-black uppercase tracking-wide text-slate-900">
+                  {projetoPrincipal.status}
+                </span>
+                <h3 className="mt-4 text-2xl font-black text-white">
+                  {projetoPrincipal.titulo}
+                </h3>
+                <p className="mt-4 text-slate-300">
+                  {projetoPrincipal.descricao}
                 </p>
-              </div>
 
-              <div className="grid gap-6 lg:grid-cols-2">
-                <article className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                    Soft Skills
-                  </h3>
-                  <ul className="mt-4 space-y-3">
-                    {softSkills.map((skill) => (
-                      <li
-                        key={skill}
-                        className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-200"
-                      >
-                        <span className="h-2 w-2 rounded-full bg-blue-500" />
-                        <span>{skill}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-
-                <article className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                    Hard Skills
-                  </h3>
-                  <div className="mt-4 space-y-4">
-                    {hardSkills.map((skill) => (
-                      <div key={skill.nome}>
-                        <div className="mb-1 flex items-center justify-between text-sm">
-                          <span className="font-semibold text-gray-800 dark:text-gray-200">
-                            {skill.nome}
-                          </span>
-                          <span className="text-gray-500 dark:text-gray-400">
-                            {skill.nivel}%
-                          </span>
-                        </div>
-                        <div className="h-2 w-full rounded-full bg-gray-200 dark:bg-gray-700">
-                          <div
-                            className="h-2 rounded-full bg-blue-500"
-                            style={{ width: `${skill.nivel}%` }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </article>
-              </div>
-            </div>
-          </section>
-          <hr className="h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
-          <section id="projetos">
-            <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-              <div className="max-w-screen-md mb-8 lg:mb-12">
-                <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white">
-                  Projetos em destaque
-                </h2>
-                <p className="mt-3 text-gray-600 dark:text-gray-300">
-                  Alguns projetos que representam minha experiência em
-                  desenvolvimento full stack e arquitetura de software.
-                </p>
-              </div>
-
-              <div className="mb-6 flex flex-wrap gap-2">
-                {tecnologiasDisponiveis.map((tech) => {
-                  const ativo = filtroTecnologia === tech;
-
-                  return (
-                    <button
-                      key={tech}
-                      type="button"
-                      onClick={() => setFiltroTecnologia(tech)}
-                      className={`rounded-full border px-3 py-1 text-sm font-semibold transition-colors ${
-                        ativo
-                          ? "border-blue-600 bg-blue-600 text-white"
-                          : "border-gray-300 text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700"
-                      }`}
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {projetoPrincipal.tecnologias.map((tecnologia) => (
+                    <span
+                      key={tecnologia}
+                      className="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-200"
                     >
-                      {tech}
-                    </button>
-                  );
-                })}
-              </div>
-
-              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-                {projetosFiltrados.map((projeto) => (
-                  <article
-                    key={projeto.titulo}
-                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800"
-                  >
-                    <div className="relative h-44 w-full bg-gradient-to-br from-slate-200 to-slate-300 dark:from-gray-700 dark:to-gray-800">
-                      {projeto.imagem ? (
-                        <Image
-                          src={projeto.imagem}
-                          alt={`Capa do projeto ${projeto.titulo}`}
-                          fill
-                          className="object-cover"
-                        />
-                      ) : null}
-                      <span className="absolute right-3 top-3 rounded-full bg-black/70 px-3 py-1 text-xs font-semibold text-white">
-                        {projeto.status}
-                      </span>
-                    </div>
-
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                        {projeto.titulo}
-                      </h3>
-
-                      <p className="mt-3 flex-1 text-sm text-gray-600 dark:text-gray-300">
-                        {projeto.descricao}
-                      </p>
-
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {projeto.tecnologias.map((tecnologia) => (
-                          <span
-                            key={tecnologia}
-                            className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-semibold text-gray-700 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200"
-                          >
-                            {tecnologia}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="mt-6 flex gap-3">
-                        <a
-                          href={projeto.repositorio}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center justify-center rounded-lg bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-black dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"
-                        >
-                          Repositório
-                        </a>
-                        <a
-                          href={projeto.demo}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-800 transition-colors hover:bg-gray-100 dark:border-gray-500 dark:text-white dark:hover:bg-gray-700"
-                        >
-                          Demo
-                        </a>
-                      </div>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </section>
-          <hr className="h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
-          <section id="contato">
-            <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-              <div className="max-w-screen-md mb-8 lg:mb-12">
-                <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white">
-                  Contato
-                </h2>
-                <p className="mt-3 text-gray-600 dark:text-gray-300">
-                  Vamos conversar sobre projeto, oportunidade ou parceria.
-                </p>
-              </div>
-
-              <div className="grid gap-6 lg:grid-cols-5">
-                <div className="lg:col-span-2 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                    Canais rápidos
-                  </h3>
-                  <div className="mt-4 space-y-3">
-                    <a
-                      href="mailto:lucasg113377@gmail.com"
-                      className="block rounded-lg border border-gray-200 px-4 py-3 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-100 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700"
-                    >
-                      E-mail: lucasg113377@gmail.com
-                    </a>
-                    <a
-                      href="https://wa.me/5584999797930"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="block rounded-lg border border-gray-200 px-4 py-3 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-100 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700"
-                    >
-                      WhatsApp
-                    </a>
-                    <a
-                      href="https://linkedin.com/in/lucasdevtec"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="block rounded-lg border border-gray-200 px-4 py-3 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-100 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700"
-                    >
-                      LinkedIn
-                    </a>
-                  </div>
+                      {tecnologia}
+                    </span>
+                  ))}
                 </div>
 
-                <form
-                  onSubmit={handleContatoSubmit}
-                  className="lg:col-span-3 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
-                >
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                    Enviar mensagem
-                  </h3>
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <a
+                    href={projetoPrincipal.demo}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center rounded-lg bg-cyan-300 px-5 py-3 text-sm font-black uppercase tracking-wide text-slate-900"
+                  >
+                    Ver demo
+                  </a>
+                  <a
+                    href={projetoPrincipal.repositorio}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center rounded-lg border border-white/20 px-5 py-3 text-sm font-bold uppercase tracking-wide text-slate-100"
+                  >
+                    Repositorio
+                  </a>
+                </div>
+              </div>
+            </article>
+          ) : null}
 
-                  <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                    <div className="sm:col-span-1">
-                      <label
-                        htmlFor="nome"
-                        className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-200"
-                      >
-                        Nome
-                      </label>
-                      <input
-                        id="nome"
-                        name="nome"
-                        type="text"
-                        required
-                        className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 outline-none transition-colors focus:border-blue-500 dark:border-gray-600 dark:bg-gray-900 dark:text-white"
-                        placeholder="Seu nome"
-                      />
+          {projetosSecundarios.length > 0 ? (
+            <div className="grid gap-6 md:grid-cols-2">
+              {projetosSecundarios.map((projeto) => (
+                <article
+                  key={projeto.titulo}
+                  className="group overflow-hidden rounded-2xl border border-white/10 bg-[#10182c] transition-transform duration-300 hover:-translate-y-1"
+                >
+                  <div className="relative h-52 w-full">
+                    <Image
+                      src={projeto.imagem}
+                      alt={`Capa do projeto ${projeto.titulo}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+
+                  <div className="p-6">
+                    <h3 className="text-xl font-black text-white">
+                      {projeto.titulo}
+                    </h3>
+                    <p className="mt-3 text-sm text-slate-300">
+                      {projeto.descricao}
+                    </p>
+
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {projeto.tecnologias.map((tecnologia) => (
+                        <span
+                          key={tecnologia}
+                          className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-200"
+                        >
+                          {tecnologia}
+                        </span>
+                      ))}
                     </div>
-                    <div className="sm:col-span-1">
-                      <label
-                        htmlFor="email"
-                        className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-200"
+
+                    <div className="mt-6 flex gap-3">
+                      <a
+                        href={projeto.demo}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center justify-center rounded-lg bg-cyan-300 px-4 py-2 text-xs font-black uppercase tracking-wide text-slate-900"
                       >
-                        E-mail
-                      </label>
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 outline-none transition-colors focus:border-blue-500 dark:border-gray-600 dark:bg-gray-900 dark:text-white"
-                        placeholder="voce@email.com"
-                      />
+                        Demo
+                      </a>
+                      <a
+                        href={projeto.repositorio}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center justify-center rounded-lg border border-white/20 px-4 py-2 text-xs font-bold uppercase tracking-wide text-slate-100"
+                      >
+                        Repositorio
+                      </a>
                     </div>
-                    <div className="sm:col-span-2">
-                      <label
-                        htmlFor="mensagem"
-                        className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-200"
-                      >
-                        Mensagem
-                      </label>
-                      <textarea
-                        id="mensagem"
-                        name="mensagem"
-                        required
-                        rows={5}
-                        className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 outline-none transition-colors focus:border-blue-500 dark:border-gray-600 dark:bg-gray-900 dark:text-white"
-                        placeholder="Escreva sua mensagem"
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 text-slate-200">
+              Nenhum projeto encontrado com esse filtro.
+            </div>
+          )}
+        </section>
+
+        <section
+          id="sobre"
+          className="border-y border-white/10 bg-[#101728] py-20"
+        >
+          <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:items-center">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-200">
+                Sobre mim
+              </p>
+              <h2 className="mt-2 text-3xl font-black text-white sm:text-4xl">
+                Perfil tecnico com visao de produto
+              </h2>
+            </div>
+            <div className="space-y-4 text-slate-300">
+              <p>
+                Sou graduado em Análise e Desenvolvimento de Sistemas e
+                estudante de Ciência da Computação, com experiência em Back-End
+                e DevOps.
+              </p>
+              <p>
+                Trabalho com tecnologias modernas para desenvolver software que
+                performa bem, escala com segurança e mantém boa experiência para
+                o usuário final.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-2">
+                <a
+                  href="https://drive.google.com/file/d/17wmC1iItTjBBOndBT4VQrws4cZWNFQx-/view?usp=sharing"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-lg border border-white/20 px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-white"
+                >
+                  Currículo
+                </a>
+                <a
+                  href="https://linkedin.com/in/lucasdevtec"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-lg bg-amber-300 px-5 py-2.5 text-sm font-black uppercase tracking-wide text-slate-900"
+                >
+                  LinkedIn
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="skills"
+          className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6"
+        >
+          <div className="mb-8">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-200">
+              Skills
+            </p>
+            <h2 className="mt-2 text-3xl font-black text-white sm:text-4xl">
+              Competências para tirar produto do papel
+            </h2>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-2">
+            <article className="rounded-2xl border border-white/10 bg-white/5 p-6">
+              <h3 className="text-xl font-black text-white">Soft skills</h3>
+              <ul className="mt-5 space-y-3">
+                {softSkills.map((skill) => (
+                  <li
+                    key={skill}
+                    className="flex items-center gap-3 text-sm text-slate-200"
+                  >
+                    <span className="h-2.5 w-2.5 rounded-full bg-amber-300" />
+                    <span>{skill}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+
+            <article className="rounded-2xl border border-white/10 bg-white/5 p-6">
+              <h3 className="text-xl font-black text-white">Hard skills</h3>
+              <div className="mt-5 space-y-4">
+                {hardSkills.map((skill) => (
+                  <div key={skill.nome}>
+                    <div className="mb-1 flex items-center justify-between text-sm">
+                      <span className="font-semibold text-slate-100">
+                        {skill.nome}
+                      </span>
+                      <span className="text-slate-300">{skill.nivel}%</span>
+                    </div>
+                    <div className="h-2 w-full rounded-full bg-white/10">
+                      <div
+                        className="h-2 rounded-full bg-gradient-to-r from-cyan-300 to-amber-300"
+                        style={{ width: `${skill.nivel}%` }}
                       />
                     </div>
                   </div>
+                ))}
+              </div>
+            </article>
+          </div>
+        </section>
 
-                  <button
-                    type="submit"
-                    className="mt-4 inline-flex items-center justify-center rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
-                  >
-                    Enviar por e-mail
-                  </button>
-
-                  {contatoStatus ? (
-                    <p className="mt-3 text-sm text-gray-600 dark:text-gray-300">
-                      {contatoStatus}
-                    </p>
-                  ) : null}
-                </form>
+        <section
+          id="contato"
+          className="border-t border-white/10 bg-[#101728] py-20"
+        >
+          <div className="mx-auto grid w-full max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-5">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 lg:col-span-2">
+              <h2 className="text-2xl font-black text-white">
+                Vamos conversar
+              </h2>
+              <p className="mt-3 text-slate-300">
+                Disponível para projetos, freelas e oportunidades de produto.
+              </p>
+              <div className="mt-6 space-y-3">
+                <a
+                  href="mailto:lucasg113377@gmail.com"
+                  className="block rounded-lg border border-white/15 px-4 py-3 text-sm font-semibold text-slate-200"
+                >
+                  Email: lucasg113377@gmail.com
+                </a>
+                <a
+                  href="https://wa.me/5581993849219"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block rounded-lg border border-white/15 px-4 py-3 text-sm font-semibold text-slate-200"
+                >
+                  WhatsApp
+                </a>
+                <a
+                  href="https://linkedin.com/in/lucasdevtec"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block rounded-lg border border-white/15 px-4 py-3 text-sm font-semibold text-slate-200"
+                >
+                  LinkedIn
+                </a>
               </div>
             </div>
-          </section>
-          <hr className="h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
-        </div>
+
+            <form
+              onSubmit={handleContatoSubmit}
+              className="rounded-2xl border border-white/10 bg-white/5 p-6 lg:col-span-3"
+            >
+              <h3 className="text-xl font-black text-white">Enviar mensagem</h3>
+              <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label
+                    htmlFor="nome"
+                    className="mb-2 block text-sm font-semibold text-slate-200"
+                  >
+                    Nome
+                  </label>
+                  <input
+                    id="nome"
+                    name="nome"
+                    type="text"
+                    required
+                    className="w-full rounded-lg border border-white/20 bg-[#0b1222] px-3 py-2 text-sm text-white outline-none ring-cyan-300 transition focus:ring-2"
+                    placeholder="Seu nome"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="mb-2 block text-sm font-semibold text-slate-200"
+                  >
+                    E-mail
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    className="w-full rounded-lg border border-white/20 bg-[#0b1222] px-3 py-2 text-sm text-white outline-none ring-cyan-300 transition focus:ring-2"
+                    placeholder="voce@email.com"
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="mensagem"
+                    className="mb-2 block text-sm font-semibold text-slate-200"
+                  >
+                    Mensagem
+                  </label>
+                  <textarea
+                    id="mensagem"
+                    name="mensagem"
+                    required
+                    rows={5}
+                    className="w-full rounded-lg border border-white/20 bg-[#0b1222] px-3 py-2 text-sm text-white outline-none ring-cyan-300 transition focus:ring-2"
+                    placeholder="Conte um pouco sobre seu projeto"
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                className="mt-4 inline-flex items-center justify-center rounded-lg bg-cyan-300 px-5 py-2.5 text-sm font-black uppercase tracking-wide text-slate-900"
+              >
+                Enviar por email
+              </button>
+
+              {contatoStatus ? (
+                <p className="mt-3 text-sm text-slate-300">{contatoStatus}</p>
+              ) : null}
+            </form>
+          </div>
+        </section>
       </main>
 
-      <footer className="bg-white dark:bg-gray-900">
-        <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-          <div className="sm:flex sm:items-center sm:justify-between">
-            <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-              © 2024{" "}
-              <a href="https://lucastech.dev.br/" className="hover:underline">
-                Lucas Oliveira
-              </a>
-              . All Rights Reserved.
-            </span>
-            <div className="flex mt-4 sm:justify-center sm:mt-0">
-              <a
-                target="_blank"
-                href="https://leetcode.com/u/lucasdevtec/"
-                className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
-              >
-                <svg
-                  className="w-4 h-4"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M 10.447266 0.265625 A 0.50005 0.50005 0 0 0 10.103516 0.41796875 L 5.65625 4.8671875 L 3.0957031 7.4257812 A 0.50005 0.50005 0 0 0 2.9785156 7.6035156 C 1.769869 8.9739016 1.7865696 11.063913 3.0957031 12.373047 L 5.65625 14.933594 C 7.0176322 16.294976 9.242133 16.294976 10.603516 14.933594 L 12.853516 12.683594 A 0.50063809 0.50063809 0 1 0 12.144531 11.976562 L 9.8945312 14.226562 C 8.9159134 15.20518 7.3418991 15.20518 6.3632812 14.226562 L 3.8027344 11.666016 C 2.8241166 10.687398 2.8241166 9.1114303 3.8027344 8.1328125 L 6.3632812 5.5742188 C 7.3418991 4.5956009 8.9159135 4.5956009 9.8945312 5.5742188 L 12.144531 7.8242188 A 0.50063784 0.50063784 0 1 0 12.853516 7.1171875 L 10.603516 4.8671875 C 9.9106907 4.174363 8.9943718 3.8431189 8.0820312 3.8554688 L 10.8125 1.125 A 0.50005 0.50005 0 0 0 10.447266 0.265625 z M 7.328125 9.4003906 A 0.50005 0.50005 0 1 0 7.328125 10.400391 L 14.228516 10.400391 A 0.50005 0.50005 0 1 0 14.228516 9.4003906 L 7.328125 9.4003906 z"></path>
-                </svg>
-                <span className="sr-only">LeetCode</span>
-              </a>
-              <a
-                target="_blank"
-                href="https://linkedin.com/in/lucasdevtec"
-                className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5 "
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  viewBox="0 0 24 24 "
-                >
-                  <path d="M19,3H5C3.895,3,3,3.895,3,5v14c0,1.105,0.895,2,2,2h14c1.105,0,2-0.895,2-2V5C21,3.895,20.105,3,19,3z M7.738,17L7.738,17 c-0.697,0-1.262-0.565-1.262-1.262v-4.477C6.477,10.565,7.042,10,7.738,10h0C8.435,10,9,10.565,9,11.262v4.477 C9,16.435,8.435,17,7.738,17z M7.694,8.717c-0.771,0-1.286-0.514-1.286-1.2s0.514-1.2,1.371-1.2c0.771,0,1.286,0.514,1.286,1.2 S8.551,8.717,7.694,8.717z M16.779,17L16.779,17c-0.674,0-1.221-0.547-1.221-1.221v-2.605c0-1.058-0.651-1.174-0.895-1.174 s-1.058,0.035-1.058,1.174v2.605c0,0.674-0.547,1.221-1.221,1.221h-0.081c-0.674,0-1.221-0.547-1.221-1.221v-4.517 c0-0.697,0.565-1.262,1.262-1.262h0c0.697,0,1.262,0.565,1.262,1.262c0,0,0.282-1.262,2.198-1.262C17.023,10,18,10.977,18,13.174 v2.605C18,16.453,17.453,17,16.779,17z"></path>
-                </svg>
-                <span className="sr-only">LinkedIn page</span>
-              </a>
-              <a
-                href="https://github.com/lucasdevtec"
-                target="_blank"
-                className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
-              >
-                <svg
-                  className="w-4 h-4"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="sr-only">GitHub account</span>
-              </a>
-              <a
-                target="_blank"
-                href="https://wa.me/+5584999797930"
-                className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  viewBox="0 0 30 30"
-                >
-                  <path d="M 15 3 C 8.373 3 3 8.373 3 15 C 3 17.251208 3.6323415 19.350068 4.7109375 21.150391 L 3.1074219 27 L 9.0820312 25.431641 C 10.829354 26.425062 12.84649 27 15 27 C 21.627 27 27 21.627 27 15 C 27 8.373 21.627 3 15 3 z M 10.892578 9.4023438 C 11.087578 9.4023438 11.287937 9.4011562 11.460938 9.4101562 C 11.674938 9.4151563 11.907859 9.4308281 12.130859 9.9238281 C 12.395859 10.509828 12.972875 11.979906 13.046875 12.128906 C 13.120875 12.277906 13.173313 12.453437 13.070312 12.648438 C 12.972312 12.848437 12.921344 12.969484 12.777344 13.146484 C 12.628344 13.318484 12.465078 13.532109 12.330078 13.662109 C 12.181078 13.811109 12.027219 13.974484 12.199219 14.271484 C 12.371219 14.568484 12.968563 15.542125 13.851562 16.328125 C 14.986562 17.342125 15.944188 17.653734 16.242188 17.802734 C 16.540187 17.951734 16.712766 17.928516 16.884766 17.728516 C 17.061766 17.533516 17.628125 16.864406 17.828125 16.566406 C 18.023125 16.268406 18.222188 16.319969 18.492188 16.417969 C 18.766188 16.515969 20.227391 17.235766 20.525391 17.384766 C 20.823391 17.533766 21.01875 17.607516 21.09375 17.728516 C 21.17075 17.853516 21.170828 18.448578 20.923828 19.142578 C 20.676828 19.835578 19.463922 20.505734 18.919922 20.552734 C 18.370922 20.603734 17.858562 20.7995 15.351562 19.8125 C 12.327563 18.6215 10.420484 15.524219 10.271484 15.324219 C 10.122484 15.129219 9.0605469 13.713906 9.0605469 12.253906 C 9.0605469 10.788906 9.8286563 10.071437 10.097656 9.7734375 C 10.371656 9.4754375 10.692578 9.4023438 10.892578 9.4023438 z"></path>{" "}
-                </svg>
-                <span className="sr-only">WhatsApp account</span>
-              </a>{" "}
-              <a
-                target="_blank"
-                href="mailto:lucasg113377@gmail.com"
-                className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  viewBox="0 0 50 50"
-                >
-                  {" "}
-                  <path d="M12 23.403V23.39 10.389L11.88 10.3h-.01L9.14 8.28C7.47 7.04 5.09 7.1 3.61 8.56 2.62 9.54 2 10.9 2 12.41v3.602L12 23.403zM38 23.39v.013l10-7.391V12.41c0-1.49-.6-2.85-1.58-3.83-1.46-1.457-3.765-1.628-5.424-.403L38.12 10.3 38 10.389V23.39zM14 24.868l10.406 7.692c.353.261.836.261 1.189 0L36 24.868V11.867L25 20l-11-8.133V24.868zM38 25.889V41c0 .552.448 1 1 1h6.5c1.381 0 2.5-1.119 2.5-2.5V18.497L38 25.889zM12 25.889L2 18.497V39.5C2 40.881 3.119 42 4.5 42H11c.552 0 1-.448 1-1V25.889z"></path>{" "}
-                </svg>
-                <span className="sr-only">Gmail account</span>
-              </a>
-            </div>
+      <footer className="border-t border-white/10 bg-[#0c111d]">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-8 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+          <span>© 2026 Lucas Oliveira. Portfólio profissional.</span>
+          <div className="flex gap-4">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/lucasdevtec"
+              className="hover:text-white"
+            >
+              GitHub
+            </a>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://linkedin.com/in/lucasdevtec"
+              className="hover:text-white"
+            >
+              LinkedIn
+            </a>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://leetcode.com/u/lucasdevtec/"
+              className="hover:text-white"
+            >
+              LeetCode
+            </a>
           </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
