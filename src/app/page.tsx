@@ -524,7 +524,7 @@ export default function MainPage() {
                 Sobre mim
               </p>
               <h2 className="mt-2 text-3xl font-black text-white sm:text-4xl">
-                Perfil tecnico com visao de produto
+                Perfil técnico com visão de produto
               </h2>
             </div>
             <div className="space-y-4 text-slate-300">
