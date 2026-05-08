@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import Link from "next/link";
 import programingSVG from "../../profilegithub/programming.svg";
 
 type Projeto = {
@@ -205,14 +206,14 @@ export default function MainPage() {
           className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6"
           aria-label="Global"
         >
-          <a href="/" className="inline-flex items-center gap-3">
+          <Link href="/" className="inline-flex items-center gap-3">
             <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-cyan-300 to-amber-300 text-sm font-black text-slate-900">
               LO
             </span>
             <span className="text-sm font-semibold tracking-[0.2em] text-slate-200">
               LUCAS OLIVEIRA
             </span>
-          </a>
+          </Link>
 
           <div className="hidden items-center gap-8 lg:flex">
             {secoesNavegacao.map((item) => (
