@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, useMemo, type FormEvent } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -35,6 +35,12 @@ const hardSkills = [
   { nome: "Git e GitHub", nivel: 92 },
 ];
 
+const imagensPlaceholder = [
+  "/projetos/a.svg",
+  "/projetos/b.svg",
+  "/projetos/c.svg",
+];
+
 const projetos: Projeto[] = [
   {
     titulo: "StudyCycle - Plataforma de Gestão de Estudos",
@@ -51,7 +57,7 @@ const projetos: Projeto[] = [
     descricao:
       "Plataforma para criação de cartas personalizadas em lote com download em massa das cartas.",
     tecnologias: ["Next.js", "Tailwind CSS", "TypeScript"],
-    imagem: "/projetos/painel-indicadores.svg",
+    imagem: "",
     status: "Em produção",
     repositorio: "https://github.com/lucasdevtec/cardforge",
     demo: "https://cardforge.ltech.dev.br/",
@@ -61,7 +67,7 @@ const projetos: Projeto[] = [
     descricao:
       "Aplicação mobile para criação e gestão de personagens com foco em velocidade de uso durante sessões de RPG.",
     tecnologias: ["React Native", "JavaScript", "Expo", "Zustand"],
-    imagem: "/projetos/api-monitoramento.svg",
+    imagem: "",
     status: "Em desenvolvimento",
     repositorio: "https://github.com/lucasdevtec/rpgmanager",
     demo: "https://rpgmanager.ltech.dev.br/",
@@ -79,7 +85,7 @@ const projetos: Projeto[] = [
       "Domain-Driven Design",
       "PostgreSQL",
     ],
-    imagem: "/projetos/painel-indicadores.svg",
+    imagem: "",
     status: "Em desenvolvimento",
     repositorio: "https://github.com/lucasdevtec/ssthelp",
     demo: "https://ssthelp.ltech.dev.br/",
@@ -167,17 +173,30 @@ const secoesNavegacao = [
 export default function MainPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [filtroTecnologia, setFiltroTecnologia] = useState("Todas");
+  const projetosComImagem = useMemo(
+    () =>
+      projetos.map((p) => ({
+        ...p,
+        imagem:
+          p.imagem ||
+          imagensPlaceholder[
+            Math.floor(Math.random() * imagensPlaceholder.length)
+          ],
+      })),
+    [],
+  );
+
   const [contatoStatus, setContatoStatus] = useState("");
 
   const tecnologiasDisponiveis = [
     "Todas",
-    ...new Set(projetos.flatMap((projeto) => projeto.tecnologias)),
+    ...new Set(projetosComImagem.flatMap((projeto) => projeto.tecnologias)),
   ];
 
   const projetosFiltrados =
     filtroTecnologia === "Todas"
-      ? projetos
-      : projetos.filter((projeto) =>
+      ? projetosComImagem
+      : projetosComImagem.filter((projeto) =>
           projeto.tecnologias.includes(filtroTecnologia),
         );
 

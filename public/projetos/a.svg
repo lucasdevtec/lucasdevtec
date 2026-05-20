@@ -13,5 +13,4 @@
   <rect x="180" y="190" width="360" height="42" rx="10" fill="#14532d"/>
   <rect x="180" y="250" width="800" height="30" rx="8" fill="#166534"/>
   <rect x="180" y="300" width="720" height="30" rx="8" fill="#166534"/>
-  <text x="180" y="490" fill="#d1fae5" font-size="34" font-family="Arial, sans-serif">API de Monitoramento</text>
 </svg>
