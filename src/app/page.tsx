@@ -47,6 +47,16 @@ const projetos: Projeto[] = [
     demo: "https://studycycle.ltech.dev.br/",
   },
   {
+    titulo: "CardForge - Criador de Cartas Personalizadas",
+    descricao:
+      "Plataforma para criação de cartas personalizadas em lote com download em massa das cartas.",
+    tecnologias: ["Next.js", "Tailwind CSS", "TypeScript"],
+    imagem: "/projetos/painel-indicadores.svg",
+    status: "Em produção",
+    repositorio: "https://github.com/lucasdevtec/cardforge",
+    demo: "https://cardforge.ltech.dev.br/",
+  },
+  {
     titulo: "RPGManager - Sistema de Gestão de Personagens",
     descricao:
       "Aplicação mobile para criação e gestão de personagens com foco em velocidade de uso durante sessões de RPG.",
