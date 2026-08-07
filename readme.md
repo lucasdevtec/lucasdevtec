@@ -68,18 +68,13 @@
 ## <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="35"><b> Github Stats </b>
 
 <div align="center">
+	
+[![GitHub Stats](https://github-stats-extended.vercel.app/api/wakatime?username=a9bea90b-e241-47fe-8e7d-b63b05724e82&langs_count=6&theme=midnight-purple)](https://wakatime.com/@a9bea90b-e241-47fe-8e7d-b63b05724e82)
 
-[![GitHub Streak - dark](https://streak-stats.demolab.com?user=lucasdevtec&theme=darcula&hide_longest_streak=true)](https://github.com/lucasdevtec)
+[![GitHub Stats](https://github-stats-extended.vercel.app/api/top-langs?username=lucasdevtec&layout=compact&langs_count=5&theme=midnight-purple)](https://github-stats-extended.vercel.app/api/top-langs?username=lucasdevtec&layout=compact&langs_count=5&theme=midnight-purple)
 
-<!--
-[//]:[![Lucas Oliveria's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=lucasdevtec&show_icons=true&theme=dark#gh-dark-mode-only)](https://github.com/lucasdevtec)
+[![GitHub Stats](https://github-stats-extended.vercel.app/api?username=lucasdevtec&rank_icon=github&show=reviews%2Cdiscussions_started%2Cdiscussions_answered%2Cprs_merged%2Cprs_merged_percentage%2Cprs_commented%2Cprs_reviewed%2Cissues_commented&show_icons=true&include_all_commits=true&theme=midnight-purple)](https://github-stats-extended.vercel.app/api?username=lucasdevtec&rank_icon=github&show=reviews%2Cdiscussions_started%2Cdiscussions_answered%2Cprs_merged%2Cprs_merged_percentage%2Cprs_commented%2Cprs_reviewed%2Cissues_commented&show_icons=true&include_all_commits=true&theme=midnight-purple)
 
-[//]:[![Lucas Oliveira's GitHub stats-Light](https://github-readme-stats.vercel.app/api?username=lucasdevtec&show_icons=true&theme=default#gh-light-mode-only)](https://github.com/lucasdevtec)
-
-[//]:[![Top Langs-Light](https://github-readme-stats.vercel.app/api/top-langs?username=lucasdevtec&layout=compact&langs_count=8&card_width=320#gh-light-mode-only)](https://github.com/lucasdevtec)
-
-[//]:[![Top Langs-Dark](https://github-readme-stats.vercel.app/api/top-langs?username=lucasdevtec&layout=compact&theme=dark&langs_count=8&card_width=320#gh-dark-mode-only)](https://github.com/lucasdevtec)
--->
 </div>
 
 ---
@@ -106,9 +101,3 @@
 </div>
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
-
-## 🏆 Achievements
-
-[![achievements-light](https://github-profile-trophy-fork-two.vercel.app/?username=lucasdevtec#gh-light-mode-only)](https://github.com/lucasdevtec/github-readme-stats#gh-light-mode-only)
-
-[![achievements-dark](https://github-profile-trophy-fork-two.vercel.app/?username=lucasdevtec&theme=radical#gh-dark-mode-only)](https://github.com/lucasdevtec/github-readme-stats#gh-dark-mode-only)
