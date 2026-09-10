@@ -1,105 +1,135 @@
-<h1 align="center"><b>Hi , I'm Lucas Oliveira </b><img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="35"></h1>
+<h1 align="center">
+  Hi 👋, I'm Lucas Oliveira
+</h1>
+
+<h3 align="center">
+  Computer Science Student • Front-End Developer • Rust Enthusiast
+</h3>
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Time+New+Roman&color=cyan&size=25&center=true&vCenter=true&width=600&height=100&lines=Web+Developer;Computer+Science+Student">
+  <img
+    src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&pause=1000&color=8A2BE2&center=true&vCenter=true&width=600&lines=Front-End+Developer;Computer+Science+Student;Learning+Rust+%F0%9F%A6%80;Building+things+for+the+Web"
+    alt="Typing SVG"
+  />
 </p>
 
-## <picture><img src = "./profilegithub/about_me.gif" width = 50px></picture> **About me**
-
-<picture>
-  <source media="(max-width: 767px)" srcset="">
-  <img align="right" alt="" src="./profilegithub/programming.svg" width=300px>
-</picture>
-
-<br>
-
-- Hello, and welcome to my GitHub profile! My name is Lucas Oliveira, and I am a self-taught front-end developer with a passion for creating engaging and user-friendly web applications.
-
-- Currently, I am pursuing a Bachelor's degree in Computer Science, where I am also learning and expanding my knowledge in software development.
-
-- My portfolio on GitHub reflects my dedication to constantly learning and improving as a developer. I am always on the lookout for new challenges that will push me out of my comfort zone and help me grow my skills.
-
-- My ultimate goal is to create innovative and user-friendly web applications that provide real value to users.
-
-- Thank you for visiting my profile, and I look forward to connecting with you!
-
-<br><br>
-
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"><br><br>
-
-## <img src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif" width ="25"><b> Skills</b>
-
-<br>
-
 <p align="center">
-
-- **Languages**:
-
-  ![JavaScript](https://img.shields.io/badge/JavaScript%20-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black)&nbsp;
-  
-  [![Rust](https://img.shields.io/badge/Rust-%23000000.svg?style=for-the-badge&logo=rust&logoColor=white)](https://www.rust-lang.org/)&nbsp;
-  
-  ![Python](https://img.shields.io/badge/Python%20-%2314354C.svg?style=for-the-badge&logo=python&logoColor=white)&nbsp;
-    
-- **Front-End Development**:
-  
-  ![REACT](https://img.shields.io/badge/-React-000000?style=for-the-badge&logo=React&logoColor=white)&nbsp;
-  
-  ![TailwindCSS](https://img.shields.io/badge/-Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)&nbsp;
-
-- **Softwares and Tools**:
-
-  ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)&nbsp;
-  
-  ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)&nbsp;
-  
-  ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)&nbsp;
-  
-  ![Visual Studio Code](https://img.shields.io/badge/VS%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)&nbsp;
-
-- **Extras**:
-
-  ![GNU BASH](https://img.shields.io/badge/GNU%20Bash-000000?style=for-the-badge&logo=GNU%20Bash&logoColor=white)&nbsp;
-  
-  ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white)&nbsp;
-
+  <a href="https://linkedin.com/in/lucasdevtec">
+    <img src="https://img.shields.io/badge/LinkedIn-Lucas%20Oliveira-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+  <a href="mailto:lucasprogjr@gmail.com">
+    <img src="https://img.shields.io/badge/Gmail-lucasprogjr-EA4335?style=for-the-badge&logo=gmail&logoColor=white" />
+  </a>
 </p>
 
 ---
 
-## <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="35"><b> Github Stats </b>
+## 👨‍💻 About Me
+
+<img
+align="right"
+src="./profilegithub/programming.svg"
+width="280"
+alt="Programming illustration"
+/>
+
+I'm a **Computer Science student** and developer focused on building modern, intuitive, and user-friendly applications.
+
+I started my journey with **Front-End Development** and I'm constantly expanding my knowledge into new technologies and areas of software development.
+
+Currently, I'm especially interested in **Rust**, software engineering, web development, and building projects that challenge me to improve as a developer.
+
+* 🎓 Bachelor's student in **Computer Science**
+* 💻 Focused on **Web & Software Development**
+* 🦀 Currently learning and building with **Rust**
+* ⚛️ Working with **React** and **Tailwind CSS**
+* 🚀 Always exploring new technologies and ideas
+* 🎯 Goal: build useful, performant, and well-designed software
+
+<br clear="both">
+
+---
+
+## 🛠️ Tech Stack
+
+### Languages
+
+<p>
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+  <img src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white" />
+  <img src="https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white" />
+</p>
+
+### Front-End
+
+<p>
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38BDF8?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+</p>
+
+### Tools
+
+<p>
+  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
+  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />
+  <img src="https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" />
+  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" />
+  <img src="https://img.shields.io/badge/GNU_Bash-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white" />
+  <img src="https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white" />
+</p>
+
+---
+
+## 📊 GitHub Stats
 
 <div align="center">
-	
-[![GitHub Stats](https://github-stats-extended.vercel.app/api/wakatime?username=a9bea90b-e241-47fe-8e7d-b63b05724e82&langs_count=6&theme=midnight-purple)](https://wakatime.com/@a9bea90b-e241-47fe-8e7d-b63b05724e82)
 
-[![GitHub Stats](https://github-stats-extended.vercel.app/api/top-langs?username=lucasdevtec&layout=compact&langs_count=5&theme=midnight-purple)](https://github-stats-extended.vercel.app/api/top-langs?username=lucasdevtec&layout=compact&langs_count=5&theme=midnight-purple)
+<img
+height="170"
+src="https://github-stats-extended.vercel.app/api?username=lucasdevtec&rank_icon=github&show_icons=true&include_all_commits=true&theme=midnight-purple"
+/>
 
-[![GitHub Stats](https://github-stats-extended.vercel.app/api?username=lucasdevtec&rank_icon=github&show=reviews%2Cdiscussions_started%2Cdiscussions_answered%2Cprs_merged%2Cprs_merged_percentage%2Cprs_commented%2Cprs_reviewed%2Cissues_commented&show_icons=true&include_all_commits=true&theme=midnight-purple)](https://github-stats-extended.vercel.app/api?username=lucasdevtec&rank_icon=github&show=reviews%2Cdiscussions_started%2Cdiscussions_answered%2Cprs_merged%2Cprs_merged_percentage%2Cprs_commented%2Cprs_reviewed%2Cissues_commented&show_icons=true&include_all_commits=true&theme=midnight-purple)
+<img
+height="170"
+src="https://github-stats-extended.vercel.app/api/top-langs?username=lucasdevtec&layout=compact&langs_count=6&theme=midnight-purple"
+/>
+
+</div>
+
+<br>
+
+<div align="center">
+
+<img
+src="https://github-stats-extended.vercel.app/api/wakatime?username=a9bea90b-e241-47fe-8e7d-b63b05724e82&langs_count=6&theme=midnight-purple"
+/>
 
 </div>
 
 ---
 
-## <b> Let's Connect..!</b><img src="./profilegithub/handshake.gif" width ="80">
+## 🤝 Let's Connect
 
-<div align='left'>
+<p align="center">
+  <a href="https://linkedin.com/in/lucasdevtec">
+    <img src="https://img.shields.io/badge/LinkedIn-lucasdevtec-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
 
-<ul>
+  <a href="mailto:lucasprogjr@gmail.com">
+    <img src="https://img.shields.io/badge/Gmail-lucasprogjr-EA4335?style=for-the-badge&logo=gmail&logoColor=white" />
+  </a>
+</p>
 
-<li>
-<a href="https://linkedin.com/in/lucasdevtec" target="_blank">
-<img src="https://img.shields.io/badge/linkedin:  lucasdevtec-0077B5.svg?color=405DE6&style=for-the-badge&logo=linkedin&logoColor=white" alt=linkedin/>
-</a>
-</li>
+<p align="center">
+  Feel free to reach out if you'd like to talk about development, projects, technology, or collaboration.
+</p>
 
-<li>
-<a href="mailto:lucasprogjr@gmail.com" target="_blank">
-<img src="https://img.shields.io/badge/gmail:  lucasprogjr-%23EA4335.svg?style=for-the-badge&logo=gmail&logoColor=white" t=mail/>
-</a>
-</li>
-	
-</ul>
-</div>
+---
 
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" />
+</p>
+
+<p align="center">
+  <i>Always learning. Always building.</i> 🚀
+</p>
