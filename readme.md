@@ -3,12 +3,12 @@
 </h1>
 
 <h3 align="center">
-  Computer Science Student • Front-End Developer • Rust Enthusiast
+  Computer Science Student • Full-Stack Developer • Rust Enthusiast
 </h3>
 
 <p align="center">
   <img
-    src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&pause=1000&color=8A2BE2&center=true&vCenter=true&width=600&lines=Front-End+Developer;Computer+Science+Student;Learning+Rust+%F0%9F%A6%80;Building+things+for+the+Web"
+    src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&pause=1000&color=8A2BE2&center=true&vCenter=true&width=600&lines=Full-Stack+Developer;Computer+Science+Student;Learning+Rust+%F0%9F%A6%80;Building+things+for+the+Web"
     alt="Typing SVG"
   />
 </p>
