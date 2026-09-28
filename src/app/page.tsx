@@ -13,8 +13,8 @@ type Projeto = {
   tecnologias: string[];
   imagem: string;
   status: string;
-  repositorio: string;
-  demo: string;
+  repositorio: string | null;
+  demo: string | null;
 };
 
 const softSkills = [
@@ -43,6 +43,16 @@ const imagensPlaceholder = [
 
 const projetos: Projeto[] = [
   {
+    titulo: "Encomenda Aê - Plataforma de Gestão de Encomendas",
+    descricao:
+      "Aplicação full stack para gestão de encomendas com trilhas, progresso e organização de rotina de forma prática.",
+    tecnologias: ["React Native", "TypeScript", "SQLite", "Expo"],
+    imagem: "/projetos/StudyCycle.png",
+    status: "Em produção",
+    repositorio: null,
+    demo: "https://encomendaae.ltech.dev.br/",
+  },
+  {
     titulo: "StudyCycle - Plataforma de Gestão de Estudos",
     descricao:
       "Aplicação full stack para gestão de estudos com trilhas, progresso e organização de rotina de forma prática.",
@@ -63,32 +73,14 @@ const projetos: Projeto[] = [
     demo: "https://cardforge.ltech.dev.br/",
   },
   {
-    titulo: "RPGManager - Sistema de Gestão de Personagens",
+    titulo: "OpenLib - Biblioteca Pessoal com Busca Semântica e RAG",
     descricao:
-      "Aplicação mobile para criação e gestão de personagens com foco em velocidade de uso durante sessões de RPG.",
-    tecnologias: ["React Native", "JavaScript", "Expo", "Zustand"],
+      "Biblioteca inteligente local-first com busca semântica e respostas via RAG. Monorepo com API NestJS para indexar PDFs e aplicativo mobile em React Native com Expo.",
+    tecnologias: ["NestJS", "React Native", "Expo", "TypeScript", "Docker"],
     imagem: "",
     status: "Em desenvolvimento",
-    repositorio: "https://github.com/lucasdevtec/rpgmanager",
-    demo: "https://rpgmanager.ltech.dev.br/",
-  },
-  {
-    titulo: "SSTHelp - Sistema de Gestão de Segurança do Trabalho",
-    descricao:
-      "Plataforma de SST com monitoramento de indicadores, riscos, conformidade legal e documentação operacional.",
-    tecnologias: [
-      "Next.js",
-      "Prisma",
-      "JWT",
-      "Material-UI",
-      "TypeScript",
-      "Domain-Driven Design",
-      "PostgreSQL",
-    ],
-    imagem: "",
-    status: "Em desenvolvimento",
-    repositorio: "https://github.com/lucasdevtec/ssthelp",
-    demo: "https://ssthelp.ltech.dev.br/",
+    repositorio: "https://github.com/lucasdevtec/openlib",
+    demo: null,
   },
 ];
 
@@ -156,7 +148,7 @@ const structuredData = {
         name: projeto.titulo,
         description: projeto.descricao,
         codeRepository: projeto.repositorio,
-        url: projeto.demo,
+        url: projeto.demo ?? projeto.repositorio ?? "https://ltech.dev.br",
         programmingLanguage: projeto.tecnologias.join(", "),
       })),
     },
@@ -458,22 +450,26 @@ export default function MainPage() {
                 </div>
 
                 <div className="mt-7 flex flex-wrap gap-3">
-                  <a
-                    href={projetoPrincipal.demo}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center justify-center rounded-lg bg-cyan-300 px-5 py-3 text-sm font-black uppercase tracking-wide text-slate-900"
-                  >
-                    Ver demo
-                  </a>
-                  <a
-                    href={projetoPrincipal.repositorio}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center justify-center rounded-lg border border-white/20 px-5 py-3 text-sm font-bold uppercase tracking-wide text-slate-100"
-                  >
-                    Repositorio
-                  </a>
+                  {projetoPrincipal.demo && (
+                    <a
+                      href={projetoPrincipal.demo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center rounded-lg bg-cyan-300 px-5 py-3 text-sm font-black uppercase tracking-wide text-slate-900"
+                    >
+                      Ver demo
+                    </a>
+                  )}
+                  {projetoPrincipal.repositorio && (
+                    <a
+                      href={projetoPrincipal.repositorio}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center rounded-lg border border-white/20 px-5 py-3 text-sm font-bold uppercase tracking-wide text-slate-100"
+                    >
+                      Repositorio
+                    </a>
+                  )}
                 </div>
               </div>
             </article>
@@ -515,22 +511,26 @@ export default function MainPage() {
                     </div>
 
                     <div className="mt-6 flex gap-3">
-                      <a
-                        href={projeto.demo}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center justify-center rounded-lg bg-cyan-300 px-4 py-2 text-xs font-black uppercase tracking-wide text-slate-900"
-                      >
-                        Demo
-                      </a>
-                      <a
-                        href={projeto.repositorio}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center justify-center rounded-lg border border-white/20 px-4 py-2 text-xs font-bold uppercase tracking-wide text-slate-100"
-                      >
-                        Repositorio
-                      </a>
+                      {projeto.demo && (
+                        <a
+                          href={projeto.demo}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center justify-center rounded-lg bg-cyan-300 px-4 py-2 text-xs font-black uppercase tracking-wide text-slate-900"
+                        >
+                          Demo
+                        </a>
+                      )}
+                      {projeto.repositorio && (
+                        <a
+                          href={projeto.repositorio}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center justify-center rounded-lg border border-white/20 px-4 py-2 text-xs font-bold uppercase tracking-wide text-slate-100"
+                        >
+                          Repositorio
+                        </a>
+                      )}
                     </div>
                   </div>
                 </article>
