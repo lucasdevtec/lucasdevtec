@@ -13,8 +13,8 @@ type Projeto = {
   tecnologias: string[];
   imagem: string;
   status: string;
-  repositorio: string | null;
-  demo: string | null;
+  repositorio: string;
+  demo: string;
 };
 
 const softSkills = [
@@ -47,9 +47,9 @@ const projetos: Projeto[] = [
     descricao:
       "Aplicação full stack para gestão de encomendas com trilhas, progresso e organização de rotina de forma prática.",
     tecnologias: ["React Native", "TypeScript", "SQLite", "Expo"],
-    imagem: "/projetos/StudyCycle.png",
+    imagem: "",
     status: "Em produção",
-    repositorio: null,
+    repositorio: "",
     demo: "https://encomendaae.ltech.dev.br/",
   },
   {
@@ -80,7 +80,7 @@ const projetos: Projeto[] = [
     imagem: "",
     status: "Em desenvolvimento",
     repositorio: "https://github.com/lucasdevtec/openlib",
-    demo: null,
+    demo: "",
   },
 ];
 
