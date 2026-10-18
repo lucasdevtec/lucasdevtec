@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -84,6 +84,12 @@ const projetos: Projeto[] = [
   },
 ];
 
+const projetosComImagem: Projeto[] = projetos.map((projeto, index) => ({
+  ...projeto,
+  imagem:
+    projeto.imagem || imagensPlaceholder[index % imagensPlaceholder.length],
+}));
+
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
@@ -94,23 +100,36 @@ const structuredData = {
       alternateName: "Lucas DevTec",
       url: "https://ltech.dev.br",
       image: "https://ltech.dev.br/opengraph-image",
+      email: "mailto:lucasg113377@gmail.com",
       jobTitle: "Desenvolvedor Full Stack",
+      knowsLanguage: ["pt-BR", "en"],
       sameAs: [
         "https://github.com/lucasdevtec",
         "https://linkedin.com/in/lucasdevtec",
         "https://leetcode.com/u/lucasdevtec/",
       ],
       alumniOf: [
-        "Análise e Desenvolvimento de Sistemas",
-        "Ciência da Computação",
+        {
+          "@type": "EducationalOrganization",
+          name: "Análise e Desenvolvimento de Sistemas",
+        },
+        {
+          "@type": "EducationalOrganization",
+          name: "Ciência da Computação",
+        },
       ],
       knowsAbout: [
         "Next.js",
         "React",
+        "React Native",
         "TypeScript",
         "Node.js",
+        "NestJS",
         "PostgreSQL",
-        "Prisma",
+        "SQL",
+        "APIs REST",
+        "Docker",
+        "CI/CD",
         "Arquitetura de Software",
         "DevOps",
       ],
@@ -119,7 +138,7 @@ const structuredData = {
       "@type": "WebSite",
       "@id": "https://ltech.dev.br/#website",
       url: "https://ltech.dev.br",
-      name: "Lucas Oliveira Portfolio",
+      name: "Lucas Oliveira | Portfólio Full Stack",
       description:
         "Portfólio de Lucas Oliveira com projetos, stack e experiência em desenvolvimento full stack.",
       inLanguage: "pt-BR",
@@ -128,12 +147,16 @@ const structuredData = {
       },
     },
     {
-      "@type": "CollectionPage",
-      "@id": "https://ltech.dev.br/#portfolio",
+      "@type": "ProfilePage",
+      "@id": "https://ltech.dev.br/#profilepage",
       url: "https://ltech.dev.br",
-      name: "Portfólio de Projetos de Lucas Oliveira",
+      name: "Portfólio de Lucas Oliveira | Desenvolvedor Full Stack",
+      inLanguage: "pt-BR",
       isPartOf: {
         "@id": "https://ltech.dev.br/#website",
+      },
+      mainEntity: {
+        "@id": "https://ltech.dev.br/#person",
       },
       about: {
         "@id": "https://ltech.dev.br/#person",
@@ -141,15 +164,22 @@ const structuredData = {
     },
     {
       "@type": "ItemList",
-      name: "Projetos em destaque",
-      itemListElement: projetos.map((projeto, index) => ({
-        "@type": "SoftwareSourceCode",
+      "@id": "https://ltech.dev.br/#projetos-lista",
+      name: "Projetos em destaque de Lucas Oliveira",
+      itemListElement: projetosComImagem.map((projeto, index) => ({
+        "@type": "ListItem",
         position: index + 1,
-        name: projeto.titulo,
-        description: projeto.descricao,
-        codeRepository: projeto.repositorio,
-        url: projeto.demo ?? projeto.repositorio ?? "https://ltech.dev.br",
-        programmingLanguage: projeto.tecnologias.join(", "),
+        item: {
+          "@type": "SoftwareSourceCode",
+          name: projeto.titulo,
+          description: projeto.descricao,
+          author: {
+            "@id": "https://ltech.dev.br/#person",
+          },
+          url: projeto.demo || projeto.repositorio || "https://ltech.dev.br/#projetos",
+          ...(projeto.repositorio ? { codeRepository: projeto.repositorio } : {}),
+          programmingLanguage: projeto.tecnologias,
+        },
       })),
     },
   ],
@@ -165,18 +195,6 @@ const secoesNavegacao = [
 export default function MainPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [filtroTecnologia, setFiltroTecnologia] = useState("Todas");
-  const projetosComImagem = useMemo(
-    () =>
-      projetos.map((p) => ({
-        ...p,
-        imagem:
-          p.imagem ||
-          imagensPlaceholder[
-            Math.floor(Math.random() * imagensPlaceholder.length)
-          ],
-      })),
-    [],
-  );
 
   const [contatoStatus, setContatoStatus] = useState("");
 
@@ -300,7 +318,10 @@ export default function MainPage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-        <section className="relative overflow-hidden">
+        <section
+          aria-labelledby="hero-heading"
+          className="relative overflow-hidden"
+        >
           <div className="pointer-events-none absolute inset-0 -z-10">
             <div className="absolute -left-24 top-12 h-80 w-80 rounded-full bg-cyan-400/15 blur-3xl" />
             <div className="absolute -right-20 top-28 h-72 w-72 rounded-full bg-amber-400/20 blur-3xl" />
@@ -312,7 +333,10 @@ export default function MainPage() {
               <p className="mb-4 inline-flex rounded-full border border-cyan-200/40 bg-cyan-300/10 px-4 py-1 text-xs font-bold uppercase tracking-[0.2em] text-cyan-100">
                 Dev Full Stack
               </p>
-              <h1 className="text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
+              <h1
+                id="hero-heading"
+                className="text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl"
+              >
                 Eu construo produtos
                 <span className="block bg-gradient-to-r from-cyan-200 via-sky-100 to-amber-200 bg-clip-text text-transparent">
                   que resolvem problemas reais
@@ -334,7 +358,8 @@ export default function MainPage() {
                 <a
                   href="https://github.com/lucasdevtec"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  aria-label="Perfil de Lucas Oliveira no GitHub"
                   className="inline-flex items-center justify-center rounded-lg border border-white/20 px-6 py-3 text-sm font-bold uppercase tracking-wide text-slate-100 transition-colors hover:bg-white/10"
                 >
                   GitHub
@@ -365,7 +390,7 @@ export default function MainPage() {
 
             <div className="relative mx-auto w-full max-w-xl">
               <Image
-                alt="Ilustracao de programacao"
+                alt="Ilustração de desenvolvimento de software full stack por Lucas Oliveira"
                 width={460}
                 height={460}
                 priority
@@ -378,6 +403,7 @@ export default function MainPage() {
 
         <section
           id="projetos"
+          aria-labelledby="projetos-heading"
           className="mx-auto w-full max-w-7xl px-4 pb-24 sm:px-6"
         >
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
@@ -385,7 +411,10 @@ export default function MainPage() {
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-200">
                 Projeto acima de tudo
               </p>
-              <h2 className="mt-2 text-3xl font-black text-white sm:text-4xl">
+              <h2
+                id="projetos-heading"
+                className="mt-2 text-3xl font-black text-white sm:text-4xl"
+              >
                 Cases em destaque
               </h2>
               <p className="mt-3 max-w-2xl text-slate-300">
@@ -395,7 +424,11 @@ export default function MainPage() {
             </div>
           </div>
 
-          <div className="mb-8 flex flex-wrap gap-2">
+          <div
+            className="mb-8 flex flex-wrap gap-2"
+            role="group"
+            aria-label="Filtrar projetos por tecnologia"
+          >
             {tecnologiasDisponiveis.map((tech) => {
               const ativo = filtroTecnologia === tech;
 
@@ -403,6 +436,7 @@ export default function MainPage() {
                 <button
                   key={tech}
                   type="button"
+                  aria-pressed={ativo}
                   onClick={() => setFiltroTecnologia(tech)}
                   className={`rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wide transition-colors ${
                     ativo
@@ -423,6 +457,7 @@ export default function MainPage() {
                   src={projetoPrincipal.imagem}
                   alt={`Capa do projeto ${projetoPrincipal.titulo}`}
                   fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                 />
               </div>
@@ -454,7 +489,8 @@ export default function MainPage() {
                     <a
                       href={projetoPrincipal.demo}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
+                      aria-label={`Ver demonstração online do projeto ${projetoPrincipal.titulo}`}
                       className="inline-flex items-center justify-center rounded-lg bg-cyan-300 px-5 py-3 text-sm font-black uppercase tracking-wide text-slate-900"
                     >
                       Ver demo
@@ -464,10 +500,11 @@ export default function MainPage() {
                     <a
                       href={projetoPrincipal.repositorio}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
+                      aria-label={`Ver repositório no GitHub do projeto ${projetoPrincipal.titulo}`}
                       className="inline-flex items-center justify-center rounded-lg border border-white/20 px-5 py-3 text-sm font-bold uppercase tracking-wide text-slate-100"
                     >
-                      Repositorio
+                      Repositório
                     </a>
                   )}
                 </div>
@@ -487,6 +524,7 @@ export default function MainPage() {
                       src={projeto.imagem}
                       alt={`Capa do projeto ${projeto.titulo}`}
                       fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover"
                     />
                   </div>
@@ -515,7 +553,8 @@ export default function MainPage() {
                         <a
                           href={projeto.demo}
                           target="_blank"
-                          rel="noreferrer"
+                          rel="noopener noreferrer"
+                          aria-label={`Ver demonstração online do projeto ${projeto.titulo}`}
                           className="inline-flex items-center justify-center rounded-lg bg-cyan-300 px-4 py-2 text-xs font-black uppercase tracking-wide text-slate-900"
                         >
                           Demo
@@ -525,10 +564,11 @@ export default function MainPage() {
                         <a
                           href={projeto.repositorio}
                           target="_blank"
-                          rel="noreferrer"
+                          rel="noopener noreferrer"
+                          aria-label={`Ver repositório no GitHub do projeto ${projeto.titulo}`}
                           className="inline-flex items-center justify-center rounded-lg border border-white/20 px-4 py-2 text-xs font-bold uppercase tracking-wide text-slate-100"
                         >
-                          Repositorio
+                          Repositório
                         </a>
                       )}
                     </div>
@@ -545,6 +585,7 @@ export default function MainPage() {
 
         <section
           id="sobre"
+          aria-labelledby="sobre-heading"
           className="border-y border-white/10 bg-[#101728] py-20"
         >
           <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:items-center">
@@ -552,7 +593,10 @@ export default function MainPage() {
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-200">
                 Sobre mim
               </p>
-              <h2 className="mt-2 text-3xl font-black text-white sm:text-4xl">
+              <h2
+                id="sobre-heading"
+                className="mt-2 text-3xl font-black text-white sm:text-4xl"
+              >
                 Perfil técnico com visão de produto
               </h2>
             </div>
@@ -571,7 +615,8 @@ export default function MainPage() {
                 <a
                   href="https://drive.google.com/file/d/17wmC1iItTjBBOndBT4VQrws4cZWNFQx-/view?usp=sharing"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  aria-label="Baixar currículo de Lucas Oliveira em PDF"
                   className="inline-flex items-center justify-center rounded-lg border border-white/20 px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-white"
                 >
                   Currículo
@@ -579,7 +624,8 @@ export default function MainPage() {
                 <a
                   href="https://linkedin.com/in/lucasdevtec"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  aria-label="Perfil de Lucas Oliveira no LinkedIn"
                   className="inline-flex items-center justify-center rounded-lg bg-amber-300 px-5 py-2.5 text-sm font-black uppercase tracking-wide text-slate-900"
                 >
                   LinkedIn
@@ -591,13 +637,17 @@ export default function MainPage() {
 
         <section
           id="skills"
+          aria-labelledby="skills-heading"
           className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6"
         >
           <div className="mb-8">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-200">
               Skills
             </p>
-            <h2 className="mt-2 text-3xl font-black text-white sm:text-4xl">
+            <h2
+              id="skills-heading"
+              className="mt-2 text-3xl font-black text-white sm:text-4xl"
+            >
               Competências para tirar produto do papel
             </h2>
           </div>
@@ -629,7 +679,14 @@ export default function MainPage() {
                       </span>
                       <span className="text-slate-300">{skill.nivel}%</span>
                     </div>
-                    <div className="h-2 w-full rounded-full bg-white/10">
+                    <div
+                      role="progressbar"
+                      aria-label={`Nível em ${skill.nome}`}
+                      aria-valuenow={skill.nivel}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                      className="h-2 w-full rounded-full bg-white/10"
+                    >
                       <div
                         className="h-2 rounded-full bg-gradient-to-r from-cyan-300 to-amber-300"
                         style={{ width: `${skill.nivel}%` }}
@@ -644,11 +701,15 @@ export default function MainPage() {
 
         <section
           id="contato"
+          aria-labelledby="contato-heading"
           className="border-t border-white/10 bg-[#101728] py-20"
         >
           <div className="mx-auto grid w-full max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-5">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-6 lg:col-span-2">
-              <h2 className="text-2xl font-black text-white">
+              <h2
+                id="contato-heading"
+                className="text-2xl font-black text-white"
+              >
                 Vamos conversar
               </h2>
               <p className="mt-3 text-slate-300">
@@ -664,7 +725,8 @@ export default function MainPage() {
                 <a
                   href="https://wa.me/5581993849219"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  aria-label="Conversar com Lucas Oliveira pelo WhatsApp"
                   className="block rounded-lg border border-white/15 px-4 py-3 text-sm font-semibold text-slate-200"
                 >
                   WhatsApp
@@ -672,7 +734,8 @@ export default function MainPage() {
                 <a
                   href="https://linkedin.com/in/lucasdevtec"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  aria-label="Conectar com Lucas Oliveira no LinkedIn"
                   className="block rounded-lg border border-white/15 px-4 py-3 text-sm font-semibold text-slate-200"
                 >
                   LinkedIn
@@ -697,6 +760,7 @@ export default function MainPage() {
                     id="nome"
                     name="nome"
                     type="text"
+                    autoComplete="name"
                     required
                     className="w-full rounded-lg border border-white/20 bg-[#0b1222] px-3 py-2 text-sm text-white outline-none ring-cyan-300 transition focus:ring-2"
                     placeholder="Seu nome"
@@ -713,6 +777,7 @@ export default function MainPage() {
                     id="email"
                     name="email"
                     type="email"
+                    autoComplete="email"
                     required
                     className="w-full rounded-lg border border-white/20 bg-[#0b1222] px-3 py-2 text-sm text-white outline-none ring-cyan-300 transition focus:ring-2"
                     placeholder="voce@email.com"
@@ -757,7 +822,8 @@ export default function MainPage() {
           <div className="flex gap-4">
             <a
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
+              aria-label="Perfil de Lucas Oliveira no GitHub"
               href="https://github.com/lucasdevtec"
               className="hover:text-white"
             >
@@ -765,7 +831,8 @@ export default function MainPage() {
             </a>
             <a
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
+              aria-label="Perfil de Lucas Oliveira no LinkedIn"
               href="https://linkedin.com/in/lucasdevtec"
               className="hover:text-white"
             >
@@ -773,7 +840,8 @@ export default function MainPage() {
             </a>
             <a
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
+              aria-label="Perfil de Lucas Oliveira no LeetCode"
               href="https://leetcode.com/u/lucasdevtec/"
               className="hover:text-white"
             >
