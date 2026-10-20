@@ -698,7 +698,7 @@ export default function MainPage() {
           " • processo   - Como funciona a metodologia em 4 passos\n" +
           " • skills     - Principais linguagens, frameworks e tecnologias\n" +
           " • contato    - Canais diretos (WhatsApp, e-mail, redes)\n" +
-          " • whois      - Dossiê e perfil profissional do Lucas\n" +
+          " • whois      - Quem sou eu e minha trajetória profissional\n" +
           " • limpar     - Limpar o histórico deste terminal";
         break;
 
@@ -1890,7 +1890,7 @@ export default function MainPage() {
                 className="mt-4 inline-flex items-center gap-2 rounded-xl bg-emerald-400 px-5 py-2.5 text-xs font-black uppercase tracking-wider text-slate-950 transition hover:bg-emerald-300"
               >
                 <ChatBubbleLeftRightIcon className="h-4 w-4" />
-                Falar com o Lucas no WhatsApp
+                Falar Comigo no WhatsApp
               </a>
             </div>
           </div>
@@ -2320,7 +2320,7 @@ export default function MainPage() {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noreferrer"
-          aria-label="Falar com o desenvolvedor no WhatsApp"
+          aria-label="Falar comigo no WhatsApp"
           className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 rounded-full bg-emerald-500 px-4 py-3 text-slate-950 font-black shadow-2xl shadow-emerald-500/40 transition-all hover:scale-105 hover:bg-emerald-400"
         >
           <span className="relative flex h-3 w-3">
