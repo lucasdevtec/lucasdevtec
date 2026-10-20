@@ -458,19 +458,9 @@ const structuredData = {
       priceRange: "$$",
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Recife",
-        addressRegion: "PE",
         addressCountry: "BR",
       },
       areaServed: [
-        {
-          "@type": "City",
-          name: "Recife",
-        },
-        {
-          "@type": "State",
-          name: "Pernambuco",
-        },
         {
           "@type": "Country",
           name: "Brasil",
@@ -2205,8 +2195,8 @@ export default function MainPage() {
                 Desenvolvedor Web Full Stack especializado em sistemas web sob medida, landing pages que convertem visitantes em clientes e aplicativos de alta performance.
               </p>
               <div className="mt-4 flex items-center gap-2 text-xs text-slate-400">
-                <span className="text-amber-400">📍</span>
-                <span>Baseado em Recife - PE • Atendimento remoto para todo o Brasil e exterior</span>
+                <span className="text-cyan-400">🌐</span>
+                <span>Atendimento remoto para todo o Brasil e exterior</span>
               </div>
               <div className="mt-2 flex items-center gap-2 text-xs text-slate-400">
                 <span className="text-emerald-400">🛡️</span>
