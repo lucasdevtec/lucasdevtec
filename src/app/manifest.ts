@@ -2,14 +2,14 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Lucas Oliveira | Desenvolvedor Full Stack",
-    short_name: "Lucas Oliveira",
+    name: "Lucas Oliveira | Desenvolvedor Web & Sistemas Sob Medida",
+    short_name: "Lucas.dev",
     description:
-      "Portfólio de Lucas Oliveira com projetos, experiência e stack em desenvolvimento full stack.",
+      "Criação de sites profissionais, landing pages de alta conversão e sistemas web sob medida por Lucas Oliveira.",
     start_url: "/",
     display: "standalone",
-    background_color: "#0c111d",
-    theme_color: "#0c111d",
+    background_color: "#0a0f1d",
+    theme_color: "#0a0f1d",
     lang: "pt-BR",
     icons: [
       {

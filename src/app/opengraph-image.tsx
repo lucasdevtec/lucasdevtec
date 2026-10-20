@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Portfólio de Lucas Oliveira, desenvolvedor full stack";
+export const alt =
+  "Lucas Oliveira | Desenvolvedor Web Freelancer & Sistemas Sob Medida";
 export const size = {
   width: 1200,
   height: 630,
@@ -68,16 +69,16 @@ export default function OpenGraphImage() {
           >
             LO
           </div>
-          <div>PORTFÓLIO</div>
+          <div>SOLUÇÕES WEB & SOFTWARE</div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div style={{ fontSize: 72, lineHeight: 1.02, fontWeight: 900 }}>
+          <div style={{ fontSize: 68, lineHeight: 1.02, fontWeight: 900 }}>
             Lucas Oliveira
           </div>
-          <div style={{ fontSize: 34, color: "#cbd5e1", maxWidth: 920 }}>
-            Desenvolvedor full stack com foco em Next.js, TypeScript,
-            arquitetura de software e produtos web escaláveis.
+          <div style={{ fontSize: 32, color: "#cbd5e1", maxWidth: 960 }}>
+            Criação de Landing Pages de alta conversão, Sistemas Web sob medida
+            e Aplicativos Mobile com foco em resultados reais.
           </div>
         </div>
 
@@ -85,17 +86,17 @@ export default function OpenGraphImage() {
           style={{
             display: "flex",
             gap: 16,
-            fontSize: 26,
+            fontSize: 24,
             color: "#a5f3fc",
           }}
         >
-          <div>Next.js</div>
+          <div>Landing Pages</div>
           <div>•</div>
-          <div>TypeScript</div>
+          <div>Sistemas Web</div>
           <div>•</div>
-          <div>React</div>
+          <div>React Native</div>
           <div>•</div>
-          <div>Node.js</div>
+          <div>SEO & APIs</div>
         </div>
       </div>
     </div>,

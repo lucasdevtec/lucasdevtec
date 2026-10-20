@@ -18,12 +18,13 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Lucas Oliveira | Desenvolvedor Full Stack (Next.js, React & Node.js)",
+    default:
+      "Lucas Oliveira | Desenvolvedor Web Freelancer & Sistemas Sob Medida",
     template: "%s | Lucas Oliveira",
   },
   description:
-    "Portfólio de Lucas Oliveira (Lucas DevTec), desenvolvedor Full Stack especialista em Next.js, React, TypeScript, Node.js, NestJS, React Native, APIs REST e arquitetura de software escalável.",
-  applicationName: "Lucas Oliveira Portfolio",
+    "Desenvolvedor Web Full Stack especializado em criar soluções digitais modernas, landing pages de alta conversão, sistemas web sob medida e aplicativos mobile. Transformo ideias em produtos que funcionam.",
+  applicationName: "Lucas Oliveira | Soluções Web & Software",
   authors: [{ name: "Lucas Oliveira", url: siteUrl }],
   creator: "Lucas Oliveira",
   publisher: "Lucas Oliveira",
@@ -51,6 +52,16 @@ export const metadata: Metadata = {
     "engenharia de software",
     "portfólio desenvolvedor",
     "freelancer full stack",
+    "programador freelancer",
+    "criar site profissional",
+    "landing page alta conversão",
+    "desenvolvimento de sistemas web",
+    "sistemas web sob medida",
+    "orçamento criação de sites",
+    "desenvolvedor web freelancer",
+    "sistemas SaaS",
+    "criação de aplicativos",
+    "otimização SEO e performance",
   ],
   alternates: {
     canonical: "/",
@@ -79,24 +90,26 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     url: siteUrl,
-    siteName: "Lucas Oliveira | Portfólio Full Stack",
-    title: "Lucas Oliveira | Desenvolvedor Full Stack (Next.js, React & Node.js)",
+    siteName: "Lucas Oliveira | Soluções Web & Sistemas",
+    title:
+      "Lucas Oliveira | Desenvolvedor Web Freelancer & Sistemas Sob Medida",
     description:
-      "Conheça os projetos, habilidades e experiência de Lucas Oliveira em desenvolvimento web e mobile full stack com foco em performance e arquitetura limpa.",
+      "Criação de sites profissionais, landing pages de alta conversão, sistemas web e aplicativos sob medida. Código limpo, rápido e focado em resultados reais.",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Portfólio de Lucas Oliveira, desenvolvedor full stack",
+        alt: "Lucas Oliveira | Desenvolvedor Web Freelancer & Sistemas Sob Medida",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lucas Oliveira | Desenvolvedor Full Stack (Next.js, React & Node.js)",
+    title:
+      "Lucas Oliveira | Desenvolvedor Web Freelancer & Sistemas Sob Medida",
     description:
-      "Portfólio com projetos em produção, stack moderna (Next.js, TypeScript, Node.js, React Native) e arquitetura de software.",
+      "Criação de landing pages, sistemas web sob medida e aplicativos. Transforme sua ideia em um produto de alta performance.",
     images: [
       {
         url: "/twitter-image",
@@ -118,8 +131,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
-      <body className={spaceGrotesk.className}>{children}</body>
+    <html lang="pt-BR" className="scroll-smooth">
+      <body
+        className={`${spaceGrotesk.className} min-h-screen bg-[#0a0f1d] text-slate-100 antialiased selection:bg-cyan-300 selection:text-slate-950`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
