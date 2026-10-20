@@ -413,7 +413,7 @@ const structuredData = {
       alternateName: ["Lucas DevTec", "Lucas Dev"],
       url: "https://ltech.dev.br",
       image: "https://ltech.dev.br/opengraph-image",
-      email: "mailto:lucasg113377@gmail.com",
+      email: "mailto:lucasprogjr@gmail.com",
       jobTitle: "Desenvolvedor Web Full Stack & Freelancer",
       knowsLanguage: ["pt-BR", "en"],
       sameAs: [
@@ -454,7 +454,7 @@ const structuredData = {
       url: "https://ltech.dev.br",
       image: "https://ltech.dev.br/opengraph-image",
       telephone: "+5584999797930",
-      email: "lucasg113377@gmail.com",
+      email: "lucasprogjr@gmail.com",
       priceRange: "$$",
       address: {
         "@type": "PostalAddress",
@@ -672,7 +672,7 @@ export default function MainPage() {
       `Investimento Base: a partir de R$ ${totalCalculado.preco.toLocaleString("pt-BR")}\n\n` +
       `Recursos Inclusos:\n${listaRecursosTxt}\n\n` +
       `Atendimento com Contrato Formal e Emissão de Nota Fiscal (PJ)\n` +
-      `WhatsApp: +55 (84) 99979-7930 | E-mail: lucasg113377@gmail.com\n` +
+      `WhatsApp: +55 (84) 99979-7930 | E-mail: lucasprogjr@gmail.com\n` +
       `Site: https://ltech.dev.br`;
 
     navigator.clipboard.writeText(textoProposta).then(() => {
@@ -751,7 +751,7 @@ export default function MainPage() {
         resposta =
           "CANAIS DE CONTATO:\n" +
           " • WhatsApp: +55 (84) 99979-7930 (Atendimento rápido)\n" +
-          " • E-mail: lucasg113377@gmail.com\n" +
+          " • E-mail: lucasprogjr@gmail.com\n" +
           " • LinkedIn: linkedin.com/in/lucasdevtec\n" +
           " • GitHub: github.com/lucasdevtec";
         break;
@@ -832,7 +832,7 @@ export default function MainPage() {
       `Nome: ${nome}\nE-mail: ${email}\n\nDetalhes do projeto:\n${mensagem}`,
     );
 
-    window.location.href = `mailto:lucasg113377@gmail.com?subject=${assunto}&body=${corpo}`;
+    window.location.href = `mailto:lucasprogjr@gmail.com?subject=${assunto}&body=${corpo}`;
     setContatoStatus(
       "Sua mensagem foi preparada no seu cliente de e-mail. Responderei o mais rápido possível!",
     );
@@ -1908,22 +1908,25 @@ export default function MainPage() {
                   Perfil Técnico
                 </p>
                 <h2 className="mt-2 text-3xl font-black text-white sm:text-4xl">
-                  Engenharia de software com foco em resultado
+                  Engenharia de software com foco em resultados reais de negócio
                 </h2>
                 <div className="mt-5 space-y-4 text-sm sm:text-base leading-relaxed text-slate-300">
                   <p>
-                    Sou <strong>Lucas Oliveira</strong>, graduado em{" "}
+                    Sou <strong>Lucas Oliveira</strong>, desenvolvedor Full Stack com sólida base acadêmica — graduado em{" "}
                     <strong>Análise e Desenvolvimento de Sistemas</strong> e
-                    graduando em <strong>Ciência da Computação</strong>. Atuo
-                    como desenvolvedor web full stack criando aplicações
-                    escaláveis, interfaces rápidas e soluções de banco de dados e
-                    DevOps.
+                    graduando em <strong>Ciência da Computação</strong>.
                   </p>
                   <p>
-                    Minha abordagem combina rigor técnico (código limpo, testes,
-                    arquitetura modular) com visão comercial prática: o software
-                    deve ser rápido para o cliente final e lucrativo para quem
-                    contrata.
+                    Não encaro a tecnologia apenas como linhas de código, mas como uma{" "}
+                    <strong>alavanca estratégica para empresas</strong>: automatizar rotinas manuais repetitivas,
+                    eliminar planilhas confusas e transformar visitantes em clientes com plataformas modernas,
+                    rápidas e altamente responsivas.
+                  </p>
+                  <p>
+                    Minha abordagem combina o melhor de dois mundos: <strong>rigor técnico de engenharia</strong> (código limpo,
+                    bancos de dados relacionais bem modelados, testes e arquitetura modular) com{" "}
+                    <strong>visão comercial prática</strong>: o software precisa ser intuitivo e instantâneo para quem usa, e
+                    lucrativo para quem contrata.
                   </p>
                 </div>
 
@@ -2062,12 +2065,12 @@ export default function MainPage() {
                     </a>
 
                     <a
-                      href="mailto:lucasg113377@gmail.com"
+                      href="mailto:lucasprogjr@gmail.com"
                       className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 text-sm font-semibold text-slate-200 transition hover:bg-white/10"
                     >
                       <div>
                         <p className="text-xs text-slate-400">E-mail Principal</p>
-                        <p>lucasg113377@gmail.com</p>
+                        <p>lucasprogjr@gmail.com</p>
                       </div>
                     </a>
 
@@ -2293,10 +2296,10 @@ export default function MainPage() {
                 </li>
                 <li>
                   <a
-                    href="mailto:lucasg113377@gmail.com"
+                    href="mailto:lucasprogjr@gmail.com"
                     className="hover:text-cyan-300 transition"
                   >
-                    lucasg113377@gmail.com
+                    lucasprogjr@gmail.com
                   </a>
                 </li>
               </ul>
