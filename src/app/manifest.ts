@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Lucas Oliveira | Desenvolvedor Web & Sistemas Sob Medida",
-    short_name: "Lucas.dev",
+    short_name: "LTech.dev.br",
     description:
       "Criação de sites profissionais, landing pages de alta conversão e sistemas web sob medida por Lucas Oliveira.",
     start_url: "/",

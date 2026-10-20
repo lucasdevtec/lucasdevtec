@@ -2198,7 +2198,7 @@ export default function MainPage() {
             {/* Column 1: Brand & Bio */}
             <div className="lg:col-span-2">
               <span className="font-mono text-base font-black tracking-wider text-white">
-                Lucas<span className="text-cyan-400">.dev</span>
+                LTech<span className="text-cyan-400">.dev.br</span>
                 <span className="text-amber-400">_</span>
               </span>
               <p className="mt-3 max-w-md text-xs leading-relaxed text-slate-400">
