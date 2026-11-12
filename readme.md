@@ -42,7 +42,7 @@ Currently, I'm especially interested in **Rust**, software engineering, web deve
 * 🎓 Bachelor's student in **Computer Science**
 * 💻 Focused on **Web & Software Development**
 * 🦀 Currently learning and building with **Rust**
-* ⚛️ Working with **React** and **Tailwind CSS**
+* ⚛️ Working with **React**, **Next**, **Material Ui** and **Tailwind CSS**
 * 🚀 Always exploring new technologies and ideas
 * 🎯 Goal: build useful, performant, and well-designed software
 
