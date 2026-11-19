@@ -3,12 +3,12 @@
 </h1>
 
 <h3 align="center">
-  Computer Science Student • Full-Stack Developer • Rust Enthusiast
+  Computer Science & Mechanical Engineering Student • Full-Stack Developer • Rust Enthusiast
 </h3>
 
 <p align="center">
   <img
-    src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&pause=1000&color=8A2BE2&center=true&vCenter=true&width=600&lines=Full-Stack+Developer;Computer+Science+Student;Learning+Rust+%F0%9F%A6%80;Building+things+for+the+Web"
+    src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&pause=1000&color=8A2BE2&center=true&vCenter=true&width=650&lines=Full-Stack+Developer;Computer+Science+%26+Mech+Eng+Student;Learning+Rust+%F0%9F%A6%80;Bridging+Software+%26+Engineering"
     alt="Typing SVG"
   />
 </p>
@@ -33,20 +33,27 @@ width="280"
 alt="Programming illustration"
 />
 
-I'm a **Computer Science student** and developer focused on building modern, intuitive, and user-friendly applications.
+I'm a **Computer Science and Mechanical Engineering student** and developer focused on building modern, performant, and intuitive applications.
 
-I started my journey with **Front-End Development** and I'm constantly expanding my knowledge into new technologies and areas of software development.
+I started my journey with **Front-End Development** and I'm constantly expanding my knowledge into systems programming, engineering principles, and full-stack architecture.
 
-Currently, I'm especially interested in **Rust**, software engineering, web development, and building projects that challenge me to improve as a developer.
-
-* 🎓 Bachelor's student in **Computer Science**
-* 💻 Focused on **Web & Software Development**
-* 🦀 Currently learning and building with **Rust**
-* ⚛️ Working with **React**, **Next**, **Material Ui** and **Tailwind CSS**
-* 🚀 Always exploring new technologies and ideas
-* 🎯 Goal: build useful, performant, and well-designed software
+- 🎓 Bachelor's student in **Computer Science** & **Mechanical Engineering**
+- ⚙️ Interested in **bridging software engineering with mechanical systems**, simulation, and high-performance computing
+- 🦀 Currently learning and building with **Rust**
+- ⚛️ Working with **React**, **Next.js**, **NestJS**, and **TypeScript**
+- 🔭 Currently working on: *Full-stack web apps & systems programming studies*
+- 🎯 Goal: build useful, reliable, and well-designed software
+- 🔭 Currently working on: **[Open Audiobook Creator](https://github.com/lucasdevtec/open-audiobook-creator)** — a cross-platform CLI & Tauri desktop app built with Rust and React to convert books into M4B/MP3 audiobooks using local TTS engines
 
 <br clear="both">
+
+---
+
+## 🚀 Featured Projects
+
+| Project | Description | Tech Stack |
+| :--- | :--- | :--- |
+| **[Open Audiobook Creator](https://github.com/lucasdevtec/open-audiobook-creator)** | Cross-platform desktop & CLI app that converts PDF, EPUB, and TXT books into chaptered M4B/MP3 audiobooks using local neural TTS engines (Kokoro, Piper, XTTS) with smart text cleaning and SHA-256 chunk caching. | `Rust` `Tauri v2` `React` `TypeScript` `Tailwind CSS` |
 
 ---
 
@@ -86,6 +93,16 @@ Currently, I'm especially interested in **Rust**, software engineering, web deve
   <img src="https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=sequelize&logoColor=white" />
 </p>
 
+### Engineering & Scientific Computing
+
+<p>
+  <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white" />
+  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" />
+  <img src="https://img.shields.io/badge/Arduino-00878F?style=for-the-badge&logo=arduino&logoColor=white" />
+  <img src="https://img.shields.io/badge/AutoCAD-E51937?style=for-the-badge&logo=autodesk&logoColor=white" />
+  <img src="https://img.shields.io/badge/SolidWorks-FF0000?style=for-the-badge&logo=dassaultsystemes&logoColor=white" />
+</p>
+
 ### Development Tools
 
 <p>
@@ -96,6 +113,8 @@ Currently, I'm especially interested in **Rust**, software engineering, web deve
   <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=black" />
   <img src="https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" />
   <img src="https://img.shields.io/badge/GNU_Bash-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tauri-24C8D8?style=for-the-badge&logo=tauri&logoColor=white" />
+  <img src="https://img.shields.io/badge/ONNX-005CED?style=for-the-badge&logo=onnx&logoColor=white" />
 </p>
 
 ### Design & Documentation
