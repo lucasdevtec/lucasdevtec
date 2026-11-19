@@ -144,14 +144,6 @@ src="https://github-stats-extended.vercel.app/api/top-langs?username=lucasdevtec
 
 <br>
 
-<div align="center">
-
-<img
-src="https://github-stats-extended.vercel.app/api/wakatime?username=a9bea90b-e241-47fe-8e7d-b63b05724e82&langs_count=6&theme=midnight-purple"
-/>
-
-</div>
-
 ---
 
 ## 🤝 Let's Connect
